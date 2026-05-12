@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v6";
+const CACHE_NAME = "my-101-dreams-v7";
 
 const FILES_TO_CACHE = [
   "./",
@@ -44,33 +44,42 @@ const FILES_TO_CACHE = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE)),
   );
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) =>
-      Promise.all(
-        cacheNames
-          .filter((cacheName) => cacheName !== CACHE_NAME)
-          .map((cacheName) => caches.delete(cacheName))
-      )
-    )
+    caches
+      .keys()
+      .then((cacheNames) =>
+        Promise.all(
+          cacheNames
+            .filter((cacheName) => cacheName !== CACHE_NAME)
+            .map((cacheName) => caches.delete(cacheName)),
+        ),
+      ),
   );
   self.clients.claim();
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+self.addEventListener("fetch", function (event) {
+  if (event.request.method !== "GET") {
+    return;
+  }
 
-  const url = new URL(event.request.url);
-  if (url.origin !== self.location.origin) return;
+  const requestUrl = new URL(event.request.url);
+
+  if (requestUrl.origin !== location.origin) {
+    return;
+  }
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
+    caches
+      .match(event.request, { ignoreSearch: true })
+      .then(function (cachedResponse) {
+        return cachedResponse || fetch(event.request);
+      }),
   );
 });
