@@ -1,0 +1,168 @@
+.dream-category,
+.dream-status,
+.dream-priority {
+  padding: 6px 10px;
+
+  border-radius: var(--radius-pill);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+/* STATUSY */
+
+.status-dream_active {
+  background: var(--blue-bg);
+  color: var(--blue-text);
+}
+
+.status-dream_completed {
+  background: var(--green-bg);
+  color: var(--green-text);
+}
+
+.status-dream_to_be_completed {
+  background: var(--yellow-bg);
+  color: var(--yellow-text);
+}
+
+.status-dream_not_attractive_anymore {
+  background: var(--gray-bg);
+  color: var(--gray-text);
+}
+
+/* DEFAULT KATEGORIE */
+
+.category-travel {
+  background: var(--cyan-bg);
+  color: var(--cyan-text);
+}
+
+.category-career {
+  background: var(--indigo-bg);
+  color: var(--indigo-text);
+}
+
+.category-relationships {
+  background: var(--pink-bg);
+  color: var(--pink-text);
+}
+
+.category-health {
+  background: var(--teal-bg);
+  color: var(--teal-text);
+}
+
+.category-finance {
+  background: var(--green-bg);
+  color: var(--green-text);
+}
+
+.category-property {
+  background: var(--yellow-bg);
+  color: var(--yellow-text);
+}
+
+.category-hobbies {
+  background: var(--lime-bg);
+  color: var(--lime-text);
+}
+
+.category-experiences {
+  background: var(--orange-bg);
+  color: var(--orange-text);
+}
+
+.category-personal-growth {
+  background: var(--purple-bg);
+  color: var(--purple-text);
+}
+
+.category-other {
+  background: var(--gray-bg);
+  color: var(--gray-text);
+}
+
+/* CUSTOM KATEGORIE */
+
+.category-blue {
+  background: var(--blue-bg);
+  color: var(--blue-text);
+}
+
+.category-green {
+  background: var(--green-bg);
+  color: var(--green-text);
+}
+
+.category-pink {
+  background: var(--pink-bg);
+  color: var(--pink-text);
+}
+
+.category-orange {
+  background: var(--orange-bg);
+  color: var(--orange-text);
+}
+
+.category-purple {
+  background: var(--purple-bg);
+  color: var(--purple-text);
+}
+
+.category-cyan {
+  background: var(--cyan-bg);
+  color: var(--cyan-text);
+}
+
+.category-indigo {
+  background: var(--indigo-bg);
+  color: var(--indigo-text);
+}
+
+.category-teal {
+  background: var(--teal-bg);
+  color: var(--teal-text);
+}
+
+.category-lime {
+  background: var(--lime-bg);
+  color: var(--lime-text);
+}
+
+.category-red {
+  background: var(--red-bg);
+  color: var(--red-text);
+}
+
+.dream-priority {
+  padding: 6px 10px;
+
+  border-radius: var(--radius-pill);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.priority-A {
+  background: var(--red-bg);
+  color: var(--red-text);
+}
+
+.priority-B {
+  background: var(--yellow-bg);
+  color: var(--yellow-text);
+}
+
+.priority-C {
+  background: var(--green-bg);
+  color: var(--green-text);
+}

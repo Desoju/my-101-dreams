@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Kategorie</title>
+  </head>
+
+  <body>
+    <main class="categories-page">
+      <a href="../index.html" class="back-link">← Zpět</a>
+      <header class="categories-header">
+        <h1>Kategorie</h1>
+        <p>Spravuj vlastní kategorie pro své sny.</p>
+      </header>
+
+      <section class="categories-card">
+        <form id="categoryForm">
+          <div class="form-field">
+            <label for="categoryName">Název kategorie</label>
+            <input
+              type="text"
+              id="categoryName"
+              placeholder="Např. Studium"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label>Barva</label>
+
+            <input type="hidden" id="categoryColor" value="blue" />
+
+            <div class="color-picker">
+              <button
+                type="button"
+                class="color-option category-blue color-option-active"
+                data-color="blue"
+              >
+                Modrá
+              </button>
+              <button
+                type="button"
+                class="color-option category-green"
+                data-color="green"
+              >
+                Zelená
+              </button>
+              <button
+                type="button"
+                class="color-option category-pink"
+                data-color="pink"
+              >
+                Růžová
+              </button>
+              <button
+                type="button"
+                class="color-option category-orange"
+                data-color="orange"
+              >
+                Oranžová
+              </button>
+              <button
+                type="button"
+                class="color-option category-purple"
+                data-color="purple"
+              >
+                Fialová
+              </button>
+              <button
+                type="button"
+                class="color-option category-cyan"
+                data-color="cyan"
+              >
+                Tyrkysová
+              </button>
+              <button
+                type="button"
+                class="color-option category-indigo"
+                data-color="indigo"
+              >
+                Indigo
+              </button>
+              <button
+                type="button"
+                class="color-option category-teal"
+                data-color="teal"
+              >
+                Teal
+              </button>
+              <button
+                type="button"
+                class="color-option category-lime"
+                data-color="lime"
+              >
+                Limetková
+              </button>
+              <button
+                type="button"
+                class="color-option category-red"
+                data-color="red"
+              >
+                Červená
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="button-primary">Přidat kategorii</button>
+        </form>
+      </section>
+
+      <section class="categories-list-section">
+        <h2>Vlastní kategorie</h2>
+
+        <div id="customCategoriesList"></div>
+      </section>
+    </main>
+
+    <script src="../js/shared/text.js"></script>
+
+    <script src="../js/shared/categories/category-data.js"></script>
+    <script src="../js/shared/categories/category-storage.js"></script>
+    <script src="../js/shared/categories/category-validation.js"></script>
+    <script src="../js/shared/categories/category-ui.js"></script>
+    <script src="../js/shared/categories/categories-page.js"></script>
+  </body>
+</html>

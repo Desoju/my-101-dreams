@@ -1,0 +1,55 @@
+.dream-list {
+  display: grid;
+  gap: 16px;
+}
+
+.empty-state {
+  padding: 24px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--primary-light);
+  border-radius: 20px;
+
+  color: var(--text-soft);
+  text-align: center;
+
+  box-shadow: var(--shadow-soft);
+}
+
+.home-sticky-top,
+.home-sticky-content {
+  position: sticky;
+  z-index: 30;
+
+  background: var(--background);
+  backdrop-filter: blur(14px);
+}
+
+.home-sticky-top {
+  top: 0;
+  padding: 8px 0;
+}
+
+.home-sticky-top h1 {
+  margin: 0;
+
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 800;
+
+  text-align: center;
+
+  color: var(--text);
+}
+
+.home-sticky-content {
+  top: 52px;
+  padding-bottom: 12px;
+}
+
+@media (max-width: 700px) {
+  .home-sticky-top {
+    padding-bottom: 16px;
+  }
+}

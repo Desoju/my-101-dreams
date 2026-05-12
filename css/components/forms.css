@@ -1,0 +1,120 @@
+form,
+#editMode {
+  display: grid;
+  gap: 22px;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  display: block;
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid var(--primary-light);
+  border-radius: 16px;
+
+  background: var(--surface);
+  color: var(--text);
+
+  font: inherit;
+
+  box-shadow: var(--shadow-soft);
+}
+
+select {
+  appearance: none;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--text-soft) 50%),
+    linear-gradient(135deg, var(--text-soft) 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 14px) 50%;
+
+  background-size:
+    6px 6px,
+    6px 6px;
+
+  background-repeat: no-repeat;
+
+  padding-right: 44px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+
+  box-shadow: var(--primary-focus-ring);
+}
+
+input[type="checkbox"] {
+  width: auto !important;
+
+  box-shadow: none;
+
+  accent-color: var(--primary);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0;
+}
+
+.subgoal-form {
+  padding: 16px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--primary-light);
+  border-radius: var(--radius-card);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.remove-subgoal-button {
+  display: block;
+
+  margin: 12px auto 0;
+}
+
+.form-row {
+  display: grid;
+  gap: 12px;
+}
+
+.form-row-three {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .form-row-three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
