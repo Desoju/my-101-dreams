@@ -1,3 +1,22 @@
+function updateEditSubgoalDateLimits() {
+  const dreamDateInput = document.getElementById("dreamCompletionDateInput");
+
+  if (!dreamDateInput) {
+    return;
+  }
+
+  const dreamDate = dreamDateInput.value;
+  const subgoalDateInputs = document.querySelectorAll(".edit-subgoal-date");
+
+  subgoalDateInputs.forEach(function (input) {
+    input.max = dreamDate || "";
+
+    if (dreamDate && input.value && input.value > dreamDate) {
+      input.value = "";
+    }
+  });
+}
+
 function fillDreamEditMode(dream) {
   document.getElementById("dreamTitleInput").value = dream.name || "";
 
@@ -26,6 +45,19 @@ function fillDreamEditMode(dream) {
   dream.subgoals.forEach(function (subgoal) {
     editSubgoalsContainer.appendChild(createSubgoalEditField(subgoal));
   });
+
+  updateEditSubgoalDateLimits();
+}
+
+const dreamCompletionDateInput = document.getElementById(
+  "dreamCompletionDateInput",
+);
+
+if (dreamCompletionDateInput) {
+  dreamCompletionDateInput.addEventListener(
+    "change",
+    updateEditSubgoalDateLimits,
+  );
 }
 
 function saveDreamEditChanges(dream) {
@@ -47,15 +79,30 @@ function saveDreamEditChanges(dream) {
     return false;
   }
 
-  dream.name = newDreamName;
-
-  dream.description = document.getElementById("dreamDescriptionInput").value;
-
-  dream.completionDate = document.getElementById(
+  const dreamCompletionDate = document.getElementById(
     "dreamCompletionDateInput",
   ).value;
 
+  const editedSubgoals = collectEditedSubgoals();
+
+  if (dreamCompletionDate) {
+    const hasSubgoalAfterDreamDeadline = editedSubgoals.some(
+      function (subgoal) {
+        return subgoal.date && subgoal.date > dreamCompletionDate;
+      },
+    );
+
+    if (hasSubgoalAfterDreamDeadline) {
+      alert("Deadline kroku nemůže být později než hlavní deadline snu.");
+      return false;
+    }
+  }
+
+  dream.name = newDreamName;
+  dream.description = document.getElementById("dreamDescriptionInput").value;
+  dream.completionDate = dreamCompletionDate;
   dream.status = document.getElementById("dreamStatusInput").value;
+
   if (
     dream.status === "dream_completed" ||
     dream.status === "dream_not_attractive_anymore"
@@ -68,14 +115,13 @@ function saveDreamEditChanges(dream) {
   if (dream.status === "dream_completed") {
     dream.pinned = false;
 
-    dream.subgoals.forEach(function (subgoal) {
+    editedSubgoals.forEach(function (subgoal) {
       subgoal.completed = true;
     });
   }
 
   dream.category = document.getElementById("dreamCategoryInput").value;
-
-  dream.subgoals = collectEditedSubgoals();
+  dream.subgoals = editedSubgoals;
 
   return true;
 }

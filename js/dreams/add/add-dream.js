@@ -8,6 +8,19 @@ function setupDreamCategorySelect() {
   }
 }
 
+function updateSubgoalDateLimits() {
+  const dreamDate = document.getElementById("dreamDate").value;
+  const subgoalDateInputs = document.querySelectorAll(".subgoal-date");
+
+  subgoalDateInputs.forEach(function (input) {
+    input.max = dreamDate || "";
+
+    if (dreamDate && input.value && input.value > dreamDate) {
+      input.value = "";
+    }
+  });
+}
+
 function createSubgoalForm() {
   const subgoalForm = document.createElement("div");
 
@@ -57,7 +70,10 @@ function setupAddSubgoalButton() {
   }
 
   addSubgoalButton.addEventListener("click", function () {
-    subgoalsContainer.appendChild(createSubgoalForm());
+    const subgoalForm = createSubgoalForm();
+
+    subgoalsContainer.appendChild(subgoalForm);
+    updateSubgoalDateLimits();
   });
 }
 
@@ -86,6 +102,7 @@ function setupDreamForm() {
 
   dreamForm.addEventListener("change", function () {
     checkIfDreamFormIsDirty();
+    updateSubgoalDateLimits();
   });
 
   dreamForm.addEventListener("submit", function (event) {
@@ -115,15 +132,29 @@ function setupDreamForm() {
       return;
     }
 
+    const dreamDate = document.getElementById("dreamDate").value;
+    const subgoals = collectSubgoals();
+
+    if (dreamDate) {
+      const hasSubgoalAfterDreamDeadline = subgoals.some(function (subgoal) {
+        return subgoal.date && subgoal.date > dreamDate;
+      });
+
+      if (hasSubgoalAfterDreamDeadline) {
+        alert("Deadline kroku nemůže být později než hlavní deadline snu.");
+        return;
+      }
+    }
+
     const newDream = {
       id: Date.now(),
       name: dreamName,
       description: document.getElementById("dreamDescription").value,
       category: document.getElementById("dreamCategory").value,
       priority: finalPriority,
-      completionDate: document.getElementById("dreamDate").value,
+      completionDate: dreamDate,
       status: document.getElementById("dreamStatus").value,
-      subgoals: collectSubgoals(),
+      subgoals: subgoals,
     };
 
     dreams.push(newDream);

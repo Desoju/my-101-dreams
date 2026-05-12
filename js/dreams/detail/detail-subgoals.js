@@ -14,8 +14,8 @@ function renderSubgoals(dream, dreams, renderViewMode) {
       return subgoal.name || subgoal.date;
     });
 
-    if (visibleSubgoals.length === 0) {
-      subgoalsList.innerHTML = `
+  if (visibleSubgoals.length === 0) {
+    subgoalsList.innerHTML = `
         <div class="empty-subgoals">
           <p>Zatím nemáš žádné kroky ke splnění.</p>
 
@@ -28,18 +28,17 @@ function renderSubgoals(dream, dreams, renderViewMode) {
         </div>
       `;
 
-      document
-        .getElementById("createFirstSubgoalButton")
-        .addEventListener("click", function () {
-          fillDreamEditMode(dream);
+    document
+      .getElementById("createFirstSubgoalButton")
+      .addEventListener("click", function () {
+        fillDreamEditMode(dream);
 
-          document.getElementById("viewMode").style.display = "none";
-          document.getElementById("editMode").style.display = "grid";
-        });
+        document.getElementById("viewMode").style.display = "none";
+        document.getElementById("editMode").style.display = "grid";
+      });
 
-      return;
-    }
-
+    return;
+  }
 
   visibleSubgoals.forEach(function (subgoal) {
     const subgoalItem = document.createElement("div");
@@ -132,6 +131,24 @@ function createSubgoalEditField(
     .addEventListener("click", function () {
       subgoalForm.remove();
     });
+
+  const subgoalDateInput = subgoalForm.querySelector(".edit-subgoal-date");
+  const dreamDateInput = document.getElementById("dreamCompletionDateInput");
+
+  if (subgoalDateInput && dreamDateInput) {
+    subgoalDateInput.max = dreamDateInput.value || "";
+
+    subgoalDateInput.addEventListener("change", function () {
+      if (
+        dreamDateInput.value &&
+        subgoalDateInput.value &&
+        subgoalDateInput.value > dreamDateInput.value
+      ) {
+        alert("Deadline kroku nemůže být později než hlavní deadline snu.");
+        subgoalDateInput.value = "";
+      }
+    });
+  }
 
   return subgoalForm;
 }

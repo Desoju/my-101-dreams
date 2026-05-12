@@ -29,10 +29,12 @@ function getFilteredDreams(dreams, filters) {
         return word.startsWith(searchText);
       });
 
+    const dreamPriority = dream.priority || "C";
+
     const matchesPriority =
       !filters.priorities ||
       filters.priorities.length === 0 ||
-      (dream.priority && filters.priorities.includes(dream.priority));
+      filters.priorities.includes(dreamPriority);
 
     return (
       matchesPriority &&
