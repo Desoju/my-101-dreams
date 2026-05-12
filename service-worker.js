@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v14";
+const CACHE_NAME = "my-101-dreams-v15";
 
 const FILES_TO_CACHE = [
   "./",
@@ -19,6 +19,7 @@ const FILES_TO_CACHE = [
   "./js/shared/dates.js",
   "./js/shared/backup.js",
 
+  "./js/pwa/pwa-install.js",
   "./js/pwa/pwa-update.js",
 
   "./js/shared/categories/category-data.js",
