@@ -60,6 +60,29 @@
         </div>
       </section>
 
+      <section class="home-actions">
+        <a
+          href="pages/categories.html"
+          class="home-action-button button-secondary"
+        >
+          Spravovat kategorie
+        </a>
+
+        <button
+          type="button"
+          id="exportDataButton"
+          class="home-action-button button-primary"
+        >
+          Export dat
+        </button>
+
+        <label for="importDataInput" class="home-action-button button-soft">
+          Import dat
+        </label>
+
+        <input type="file" id="importDataInput" accept=".json" hidden />
+      </section>
+
       <div class="home-sticky-content">
         <section class="search-filter-section">
           <input
@@ -168,10 +191,6 @@
             </button>
           </div>
         </section>
-
-        <a href="pages/categories.html" class="manage-categories-link">
-          Spravovat kategorie
-        </a>
       </div>
 
       <section class="dreams-section">
@@ -208,6 +227,7 @@
     <script src="js/dreams/home/index-stat-filters.js"></script>
 
     <script src="js/dreams/filters/filter-setup.js"></script>
+    <script src="js/shared/backup.js"></script>
     <script src="js/dreams/home/index.js"></script>
   </body>
 </html>

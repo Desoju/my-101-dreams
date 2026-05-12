@@ -32,6 +32,28 @@ button:active {
    BUTTON TYPES
 ========================= */
 
+.button-primary,
+.button-secondary,
+.button-soft,
+.button-danger,
+.button-success {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  border-radius: 18px;
+}
+
+.button-primary,
+.button-secondary,
+.button-soft,
+.button-danger,
+.button-success,
+.home-action-button {
+  border: none;
+}
+
+
 .button-primary {
   background: var(--primary-gradient);
   color: white;

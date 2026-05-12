@@ -28,7 +28,8 @@
 
 .home-sticky-top {
   top: 0;
-  padding: 8px 0;
+
+  padding: 8px 0 16px;
 }
 
 .home-sticky-top h1 {
@@ -45,11 +46,30 @@
 
 .home-sticky-content {
   top: 52px;
+
   padding-bottom: 12px;
 }
 
-@media (max-width: 700px) {
-  .home-sticky-top {
-    padding-bottom: 16px;
+.home-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+.home-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+
+  text-decoration: none;
+}
+
+@media (min-width: 700px) {
+  .home-actions {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
