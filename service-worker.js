@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v2";
+const CACHE_NAME = "my-101-dreams-v3";
 
 const FILES_TO_CACHE = [
   "./",
@@ -33,7 +33,7 @@ self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return cache.addAll(FILES_TO_CACHE);
-    })
+    }),
   );
 });
 
@@ -45,16 +45,22 @@ self.addEventListener("activate", function (event) {
           if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
-        })
+        }),
       );
-    })
+    }),
   );
 });
 
 self.addEventListener("fetch", function (event) {
+  const requestUrl = new URL(event.request.url);
+
+  if (requestUrl.origin !== location.origin) {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then(function (cachedResponse) {
+    caches.match(requestUrl.pathname).then(function (cachedResponse) {
       return cachedResponse || fetch(event.request);
-    })
+    }),
   );
 });
