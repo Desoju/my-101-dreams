@@ -1,12 +1,32 @@
-const CACHE_NAME = "my-101-dreams-v1";
+const CACHE_NAME = "my-101-dreams-v2";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./manifest.json",
+
   "./css/style.css",
+
+  "./pages/add-dream.html",
+  "./pages/dream-detail.html",
+  "./pages/categories.html",
+
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+
   "./js/shared/storage.js",
+  "./js/shared/text.js",
+
+  "./js/shared/categories/category-data.js",
+  "./js/shared/categories/category-storage.js",
+  "./js/shared/categories/category-ui.js",
+  "./js/shared/categories/category-validation.js",
+
   "./js/shared/backup.js",
+
+  "./js/components/cards.js",
+
+  "./js/index.js",
 ];
 
 self.addEventListener("install", function (event) {
