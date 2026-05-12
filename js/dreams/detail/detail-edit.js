@@ -66,16 +66,14 @@ function saveDreamEditChanges(dream) {
   const dreams = getDreams();
 
   if (selectedPriority === "A" && !canSetPriorityA(dreams, dream.id)) {
-    alert("Priorita A je omezená na 10 snů.");
-
+    showToast("Priorita A je omezená na 10 snů.", "error");
     return false;
   }
 
   const newDreamName = document.getElementById("dreamTitleInput").value.trim();
 
   if (dreamExistsByName(dreams, newDreamName, dream.id)) {
-    alert("Sen s tímto názvem už existuje.");
-
+    showToast("Sen s tímto názvem už existuje.", "error");
     return false;
   }
 
@@ -93,7 +91,10 @@ function saveDreamEditChanges(dream) {
     );
 
     if (hasSubgoalAfterDreamDeadline) {
-      alert("Deadline kroku nemůže být později než hlavní deadline snu.");
+      showToast(
+        "Deadline kroku nemůže být později než hlavní deadline snu.",
+        "error",
+      );
       return false;
     }
   }

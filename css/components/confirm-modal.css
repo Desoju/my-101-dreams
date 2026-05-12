@@ -1,0 +1,50 @@
+.confirm-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.5rem;
+
+  background: rgba(15, 23, 42, 0.55);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.2s ease;
+
+  z-index: 10000;
+}
+
+.confirm-modal-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.confirm-modal {
+  width: min(100%, 24rem);
+
+  padding: 1.5rem;
+
+  border-radius: 1.5rem;
+
+  background: white;
+
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+}
+
+.confirm-modal p {
+  margin: 0;
+
+  line-height: 1.5;
+}
+
+.confirm-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+
+  margin-top: 1.5rem;
+}

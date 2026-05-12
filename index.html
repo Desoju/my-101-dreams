@@ -4,19 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#06b6d4" />
+
     <link rel="icon" href="icons/icon-192.png" />
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="css/style.css" />
+
     <title>My 101 dreams</title>
   </head>
 
   <body>
     <main class="home-page">
+      <!-- Header -->
       <header class="home-sticky-top">
         <h1>Mých 101 snů</h1>
       </header>
 
-      <section class="home-stats">
+      <!-- Stats -->
+      <section class="home-stats" aria-label="Statistiky snů">
         <div
           class="stat-card"
           data-filter-type="status"
@@ -72,7 +76,8 @@
         </div>
       </section>
 
-      <section class="home-actions">
+      <!-- App actions -->
+      <section class="home-actions" aria-label="Akce aplikace">
         <button
           type="button"
           id="installAppButton"
@@ -101,10 +106,19 @@
         </label>
 
         <input type="file" id="importDataInput" accept=".json" hidden />
+
+        <button
+          type="button"
+          id="restoreBackupButton"
+          class="home-action-button button-soft hidden"
+        >
+          Obnovit poslední zálohu
+        </button>
       </section>
 
+      <!-- Search and filters -->
       <div class="home-sticky-content">
-        <section class="search-filter-section">
+        <section class="search-filter-section" aria-label="Vyhledávání a filtr">
           <input
             type="text"
             id="dreamSearchInput"
@@ -113,6 +127,7 @@
           />
 
           <button
+            type="button"
             id="toggleFiltersButton"
             class="filter-icon-button button-primary"
           >
@@ -124,6 +139,7 @@
           <div class="filters-row">
             <div class="filters-inline-group">
               <p class="filter-group-title">Priority</p>
+
               <div class="priority-filter-list">
                 <label class="checkbox-filter">
                   <input
@@ -156,6 +172,7 @@
 
             <div class="filters-inline-group">
               <p class="filter-group-title">Stavy</p>
+
               <div class="status-filter-list">
                 <label class="checkbox-filter">
                   <input
@@ -197,12 +214,12 @@
           </div>
 
           <p class="filter-group-title">Kategorie</p>
+
           <div id="categoryFilterList" class="category-filter-list"></div>
 
           <div class="filters-bottom-row">
             <label class="checkbox-filter">
               <input type="checkbox" id="showInactiveDreams" />
-
               Zobrazit i sny, které mě už nelákají
             </label>
 
@@ -213,12 +230,19 @@
         </section>
       </div>
 
-      <section class="dreams-section">
+      <!-- Dreams list -->
+      <section class="dreams-section" aria-label="Seznam snů">
         <div id="dreamList" class="dream-list"></div>
       </section>
 
-      <a href="pages/add-dream.html" class="floating-add-button"></a>
+      <!-- Floating action -->
+      <a
+        href="pages/add-dream.html"
+        class="floating-add-button"
+        aria-label="Přidat nový sen"
+      ></a>
 
+      <!-- PWA update UI -->
       <div id="updateBanner" class="update-banner hidden">
         <p>Je dostupná nová verze aplikace.</p>
 
@@ -228,37 +252,44 @@
       </div>
     </main>
 
+    <!-- Shared utilities -->
     <script src="js/shared/storage.js"></script>
     <script src="js/shared/dates.js"></script>
+    <script src="js/shared/text.js"></script>
+    <script src="js/shared/backup.js"></script>
 
+    <!-- Categories -->
     <script src="js/shared/categories/category-data.js"></script>
     <script src="js/shared/categories/category-storage.js"></script>
     <script src="js/shared/categories/category-ui.js"></script>
 
+    <!-- Dream core -->
     <script src="js/dreams/core/dream-status.js"></script>
     <script src="js/dreams/core/dream-priority.js"></script>
     <script src="js/dreams/core/dream-progress.js"></script>
     <script src="js/dreams/core/dream-stats.js"></script>
 
-    <script src="js/shared/text.js"></script>
-
-    <script src="js/pwa/pwa-install.js"></script>
-    <script src="js/pwa/pwa-update.js"></script>
-
+    <!-- Filters -->
     <script src="js/dreams/filters/filter-sort.js"></script>
     <script src="js/dreams/filters/filter-logic.js"></script>
     <script src="js/dreams/filters/filter-ui.js"></script>
+    <script src="js/dreams/filters/filter-setup.js"></script>
 
+    <!-- Components -->
     <script src="js/components/dream-card.js"></script>
     <script src="js/components/empty-state.js"></script>
     <script src="js/components/stat-card.js"></script>
+    <script src="js/components/toast.js"></script>
+    <script src="js/components/confirm-modal.js"></script>
 
+    <!-- Home page -->
     <script src="js/dreams/home/index-stats.js"></script>
     <script src="js/dreams/home/index-render.js"></script>
     <script src="js/dreams/home/index-stat-filters.js"></script>
-
-    <script src="js/dreams/filters/filter-setup.js"></script>
-    <script src="js/shared/backup.js"></script>
     <script src="js/dreams/home/index.js"></script>
+
+    <!-- PWA -->
+    <script src="js/pwa/pwa-install.js"></script>
+    <script src="js/pwa/pwa-update.js"></script>
   </body>
 </html>

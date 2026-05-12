@@ -15,8 +15,8 @@ function toggleDreamPin(dream, dreams) {
   saveDreams(dreams);
 }
 
-function deleteDream(dreams, dreamId) {
-  const confirmDelete = confirm("Opravdu chceš tento sen smazat?");
+async function deleteDream(dreams, dreamId) {
+  const confirmDelete = await showConfirm("Opravdu chceš tento sen smazat?");
 
   if (!confirmDelete) {
     return;
@@ -27,6 +27,8 @@ function deleteDream(dreams, dreamId) {
   });
 
   saveDreams(updatedDreams);
+
+  showToast("Sen byl smazán.", "success");
 
   window.location.href = "../index.html";
 }

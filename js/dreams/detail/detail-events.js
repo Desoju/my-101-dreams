@@ -1,18 +1,21 @@
 function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
   let isEditDirty = false;
-
   const backLink = document.querySelector(".back-link");
 
   if (backLink) {
-    backLink.addEventListener("click", function (event) {
-      if (!isEditDirty) {
+    backLink.addEventListener("click", async function (event) {
+      if (!isFormDirty) {
         return;
       }
 
-      const shouldLeave = confirm("Máš neuložené změny. Opravdu chceš odejít?");
+      event.preventDefault();
 
-      if (!shouldLeave) {
-        event.preventDefault();
+      const shouldLeave = await showConfirm(
+        "Máš neuložené změny. Opravdu chceš odejít?",
+      );
+
+      if (shouldLeave) {
+        window.location.href = backLink.href;
       }
     });
   }
@@ -29,9 +32,9 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
 
   document
     .getElementById("cancelEditButton")
-    .addEventListener("click", function () {
+    .addEventListener("click", async function () {
       if (isEditDirty) {
-        const shouldCancel = confirm(
+        const shouldCancel = await showConfirm(
           "Máš neuložené změny. Opravdu chceš zrušit úpravy?",
         );
 
