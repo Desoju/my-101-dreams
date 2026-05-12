@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/my-101-dreams/" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Detail snu</title>
+  </head>
+
+  <body>
+    <main class="detail-page">
+      <a href="index.html" class="back-link">← Zpět</a>
+
+      <section id="viewMode">
+        <section class="detail-hero-card">
+          <div class="detail-hero-top">
+            <h1 id="dreamTitleText"></h1>
+
+            <div class="detail-tags">
+              <button
+                id="pinDreamButton"
+                type="button"
+                class="pin-dream-button"
+              >
+                📍
+              </button>
+              <span id="dreamPriorityText" class="dream-priority"></span>
+              <span id="dreamStatusText" class="dream-status"></span>
+              <span id="dreamCategoryText" class="dream-category"></span>
+            </div>
+          </div>
+          <p id="dreamDescriptionText"></p>
+        </section>
+
+        <section class="detail-card">
+          <h2>Progress</h2>
+
+          <p id="dreamProgressText" class="detail-muted-text"></p>
+
+          <div class="progress-bar">
+            <div id="dreamProgressFill" class="progress-fill"></div>
+          </div>
+
+          <div
+            id="completedDreamNotice"
+            class="completed-dream-notice"
+            style="display: none"
+          >
+            <p>
+              Všechny kroky jsou splněné. Chceš označit celý sen jako splněný?
+            </p>
+            <button id="completeDreamButton" class="button-success">
+              Označit jako splněný
+            </button>
+          </div>
+        </section>
+
+        <section class="detail-grid">
+          <div class="detail-info-card" id="dreamCompletionDateCard">
+            <h3>Datum splnění</h3>
+            <p id="dreamCompletionDateText"></p>
+          </div>
+
+          <div class="detail-info-card">
+            <h3>Zbývající čas</h3>
+            <p id="dreamRemainingTime"></p>
+          </div>
+        </section>
+
+        <section class="detail-card">
+          <h2>Kroky ke splnění</h2>
+          <div id="subgoalsList"></div>
+        </section>
+
+        <button id="editDreamButton" class="button-secondary">Upravit</button>
+
+        <section class="detail-actions">
+          <button id="completeDreamFromDetailButton" class="button-success">
+            Označit jako splněný
+          </button>
+
+          <button id="deleteDreamButton" class="button-danger">
+            Smazat sen
+          </button>
+        </section>
+      </section>
+
+      <section id="editMode" class="detail-edit-card" style="display: none">
+        <header class="detail-edit-header">
+          <h1>Upravit sen</h1>
+        </header>
+
+        <div class="form-field">
+          <label for="dreamTitleInput">Název snu</label>
+          <input type="text" id="dreamTitleInput" />
+        </div>
+
+        <div class="form-field">
+          <label for="dreamDescriptionInput">Popis snu</label>
+          <textarea id="dreamDescriptionInput"></textarea>
+        </div>
+
+        <div class="form-row form-row-three">
+          <div class="form-field">
+            <label for="dreamCategoryInput">Kategorie snu</label>
+            <select id="dreamCategoryInput"></select>
+          </div>
+
+          <div class="form-field">
+            <label for="dreamPriorityInput">Priorita</label>
+
+            <select id="dreamPriorityInput">
+              <option value="A">A — Aktivně na tom pracuji</option>
+              <option value="B">B — Blízká budoucnost</option>
+              <option value="C">C — Čeká na svůj čas</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="dreamStatusInput">Stav snu</label>
+            <select id="dreamStatusInput">
+              <option value="dream_active">Aktivní</option>
+              <option value="dream_completed">Splněný</option>
+              <option value="dream_to_be_completed">Do budoucna</option>
+              <option value="dream_not_attractive_anymore">Už mě neláká</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="dreamCompletionDateInput">Datum splnění</label>
+          <input type="datetime-local" id="dreamCompletionDateInput" />
+        </div>
+
+        <section class="edit-subgoals-section">
+          <h2>Kroky ke splnění</h2>
+
+          <div id="editSubgoalsContainer"></div>
+
+          <button type="button" id="addEditSubgoalButton" class="button-soft">
+            Přidat další krok
+          </button>
+        </section>
+
+        <button id="saveDreamButton" class="button-primary">
+          Uložit změny
+        </button>
+        <button id="cancelEditButton" class="button-soft" type="button">
+          Zrušit
+        </button>
+      </section>
+    </main>
+
+    <script src="js/shared/storage.js"></script>
+    <script src="js/shared/text.js"></script>
+    <script src="js/shared/dates.js"></script>
+
+    <script src="js/shared/categories/category-data.js"></script>
+    <script src="js/shared/categories/category-storage.js"></script>
+    <script src="js/shared/categories/category-ui.js"></script>
+
+    <script src="js/dreams/core/dream-status.js"></script>
+    <script src="js/dreams/core/dream-priority.js"></script>
+    <script src="js/dreams/core/dream-progress.js"></script>
+    <script src="js/dreams/core/dream-validation.js"></script>
+
+    <script src="js/dreams/detail/detail-progress.js"></script>
+    <script src="js/dreams/detail/detail-subgoals.js"></script>
+    <script src="js/dreams/detail/detail-edit.js"></script>
+    <script src="js/dreams/detail/detail.js"></script>
+  </body>
+</html>
