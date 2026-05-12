@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v9";
+const CACHE_NAME = "my-101-dreams-v10";
 
 const FILES_TO_CACHE = [
   "./",
@@ -51,6 +51,25 @@ const FILES_TO_CACHE = [
   "./js/components/dream-card.js",
   "./js/components/empty-state.js",
   "./js/components/stat-card.js",
+
+  "./css/base/variables.css",
+  "./css/base/base.css",
+
+  "./css/layout/layout.css",
+
+  "./css/components/buttons.css",
+  "./css/components/cards.css",
+  "./css/components/forms.css",
+  "./css/components/badges.css",
+  "./css/components/filters.css",
+  "./css/components/progress.css",
+  "./css/components/stats.css",
+
+  "./css/pages/home.css",
+  "./css/pages/detail.css",
+  "./css/pages/add-dream.css",
+  "./css/pages/categories.css",
+  "./css/pages/offline.css",
 ];
 
 self.addEventListener("install", function (event) {
