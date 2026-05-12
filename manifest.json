@@ -1,0 +1,21 @@
+{
+  "name": "My 101 Dreams",
+  "short_name": "101 Dreams",
+  "description": "Osobní aplikace pro sledování snů a životních cílů.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f3ef",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
