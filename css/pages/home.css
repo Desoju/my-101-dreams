@@ -68,6 +68,33 @@
   text-decoration: none;
 }
 
+.update-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+}
+
+.update-banner p {
+  margin: 0;
+}
+
+.update-banner.hidden {
+  display: none;
+}
+
 @media (min-width: 700px) {
   .home-actions {
     grid-template-columns: repeat(3, 1fr);

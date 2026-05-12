@@ -210,6 +210,14 @@
       </section>
 
       <a href="pages/add-dream.html" class="floating-add-button"></a>
+
+      <div id="updateBanner" class="update-banner hidden">
+        <p>Je dostupná nová verze aplikace.</p>
+
+        <button type="button" id="updateAppButton" class="button-primary">
+          Aktualizovat
+        </button>
+      </div>
     </main>
 
     <script src="js/shared/storage.js"></script>
@@ -226,6 +234,8 @@
 
     <script src="js/shared/text.js"></script>
 
+    <script src="js/pwa/pwa-update.js"></script>
+
     <script src="js/dreams/filters/filter-sort.js"></script>
     <script src="js/dreams/filters/filter-logic.js"></script>
     <script src="js/dreams/filters/filter-ui.js"></script>
@@ -241,11 +251,5 @@
     <script src="js/dreams/filters/filter-setup.js"></script>
     <script src="js/shared/backup.js"></script>
     <script src="js/dreams/home/index.js"></script>
-
-    <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./service-worker.js");
-      }
-    </script>
   </body>
 </html>

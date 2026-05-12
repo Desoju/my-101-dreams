@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v11";
+const CACHE_NAME = "my-101-dreams-v12";
 
 const FILES_TO_CACHE = [
   "./",
@@ -18,6 +18,8 @@ const FILES_TO_CACHE = [
   "./js/shared/text.js",
   "./js/shared/dates.js",
   "./js/shared/backup.js",
+
+  "./js/pwa/pwa-update.js",
 
   "./js/shared/categories/category-data.js",
   "./js/shared/categories/category-storage.js",
@@ -78,8 +80,6 @@ self.addEventListener("install", function (event) {
       return cache.addAll(FILES_TO_CACHE);
     }),
   );
-
-  self.skipWaiting();
 });
 
 self.addEventListener("activate", function (event) {
@@ -131,4 +131,10 @@ self.addEventListener("fetch", function (event) {
         });
       }),
   );
+});
+
+self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
