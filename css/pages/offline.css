@@ -1,0 +1,32 @@
+.offline-page {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 2rem;
+}
+
+.offline-page h1 {
+  margin-bottom: 1rem;
+}
+
+.offline-page p {
+  margin-bottom: 2rem;
+
+  max-width: 320px;
+}
+
+.offline-button {
+  display: inline-block;
+
+  padding: 0.9rem 1.4rem;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+}

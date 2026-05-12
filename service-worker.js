@@ -1,10 +1,11 @@
-const CACHE_NAME = "my-101-dreams-v8";
+const CACHE_NAME = "my-101-dreams-v9";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./manifest.json",
   "./css/style.css",
+  "./offline.html",
 
   "./pages/add-dream.html",
   "./pages/dream-detail.html",
@@ -56,7 +57,7 @@ self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return cache.addAll(FILES_TO_CACHE);
-    })
+    }),
   );
 
   self.skipWaiting();
@@ -72,9 +73,9 @@ self.addEventListener("activate", function (event) {
           })
           .map(function (cacheName) {
             return caches.delete(cacheName);
-          })
+          }),
       );
-    })
+    }),
   );
 
   self.clients.claim();
@@ -92,8 +93,23 @@ self.addEventListener("fetch", function (event) {
   }
 
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then(function (cachedResponse) {
-      return cachedResponse || fetch(event.request);
-    })
+    caches
+      .match(event.request, { ignoreSearch: true })
+      .then(function (cachedResponse) {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        return fetch(event.request).catch(function () {
+          if (event.request.mode === "navigate") {
+            return caches.match("./offline.html");
+          }
+
+          return new Response("", {
+            status: 408,
+            statusText: "Offline",
+          });
+        });
+      }),
   );
 });
