@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v3";
+const CACHE_NAME = "my-101-dreams-v4";
 
 const FILES_TO_CACHE = [
   "./",
@@ -58,9 +58,11 @@ self.addEventListener("fetch", function (event) {
     return;
   }
 
+  const cleanPath = requestUrl.pathname;
+
   event.respondWith(
-    caches.match(requestUrl.pathname).then(function (cachedResponse) {
+    caches.match(cleanPath).then(function (cachedResponse) {
       return cachedResponse || fetch(event.request);
-    }),
+    })
   );
 });
