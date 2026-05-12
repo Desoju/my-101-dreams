@@ -6,7 +6,7 @@ Built with vanilla HTML, CSS and JavaScript.
 
 ## Live Demo
 
-[Open the app](https://YOUR_USERNAME.github.io/YOUR_REPOSITORY_NAME/)
+https://desoju.github.io/my-101-dreams/
 
 ---
 
