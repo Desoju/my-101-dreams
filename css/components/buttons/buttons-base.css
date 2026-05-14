@@ -1,0 +1,47 @@
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  padding: 15px 18px;
+
+  border: none;
+  border-radius: 18px;
+
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+.button-primary,
+.button-secondary,
+.button-soft,
+.button-danger,
+.button-success,
+.floating-add-button {
+  transition:
+    transform 0.12s ease,
+    opacity 0.2s ease,
+    background-color 0.2s ease;
+}
+
+button:active,
+.button-primary:active,
+.button-secondary:active,
+.button-soft:active,
+.button-danger:active,
+.button-success:active {
+  transform: scale(0.98);
+}

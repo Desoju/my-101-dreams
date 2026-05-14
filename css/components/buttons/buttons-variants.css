@@ -9,19 +9,11 @@
 
   border-radius: 18px;
   border: none;
-
-  transition:
-    transform 0.12s ease,
-    opacity 0.2s ease,
-    background-color 0.2s ease;
 }
 
-.button-primary:active,
-.button-secondary:active,
-.button-soft:active,
-.button-danger:active,
-.button-success:active {
-  transform: scale(0.98);
+.home-action-button {
+  border: none;
+  padding: 5px;
 }
 
 .button-primary {
@@ -61,9 +53,4 @@
   color: white;
 
   box-shadow: var(--success-shadow);
-}
-
-.home-action-button {
-  border: none;
-  padding: 5px;
 }

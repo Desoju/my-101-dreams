@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v1.1.3";
+const CACHE_NAME = "my-101-dreams-v1.1.4";
 
 const FILES_TO_CACHE = [
   "./",
@@ -73,6 +73,7 @@ const FILES_TO_CACHE = [
   "./css/layout/layout.css",
 
   "./css/components/buttons/buttons-base.css",
+  "./css/components/buttons/buttons-utils.css",
   "./css/components/buttons/buttons-variants.css",
   "./css/components/buttons/buttons-links.css",
   "./css/components/buttons/floating-button.css",
