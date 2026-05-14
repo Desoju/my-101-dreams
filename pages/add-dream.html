@@ -40,11 +40,12 @@
         </div>
 
         <div class="form-field">
-          <label for="dreamPinterestBoard"> Pinterest board </label>
+          <label for="dreamPinterestBoard">Pinterest board</label>
 
           <input
             type="url"
             id="dreamPinterestBoard"
+            name="dream_pinterest_board"
             placeholder="https://pinterest.com/..."
           />
         </div>
@@ -53,13 +54,13 @@
           <div class="form-field">
             <label for="dreamCategory">Kategorie</label>
 
-            <select id="dreamCategory"></select>
+            <select id="dreamCategory" name="dream_category"></select>
           </div>
 
           <div class="form-field">
             <label for="dreamPriority">Priorita</label>
 
-            <select id="dreamPriority">
+            <select id="dreamPriority" name="dream_priority">
               <option value="A">A — Aktivně na tom pracuji</option>
               <option value="B">B — Blízká budoucnost</option>
               <option value="C" selected>C — Čeká na svůj čas</option>
@@ -69,7 +70,7 @@
           <div class="form-field">
             <label for="dreamStatus">Stav snu</label>
 
-            <select id="dreamStatus">
+            <select id="dreamStatus" name="dream_status">
               <option value="dream_active">Aktivní</option>
               <option value="dream_to_be_completed" selected>
                 Do budoucna
@@ -95,19 +96,26 @@
         <div id="subgoalsContainer">
           <div class="subgoal-form">
             <div class="form-field">
-              <label>Co mě přiblíží ke splnění snu</label>
+              <label for="subgoalName0">Co mě přiblíží ke splnění snu</label>
 
               <input
                 type="text"
+                id="subgoalName0"
+                name="subgoal_name[]"
                 class="subgoal-name"
                 placeholder="Např. Půjdu brzy spát"
               />
             </div>
 
             <div class="form-field">
-              <label>Do kdy to chci zvládnout</label>
+              <label for="subgoalDate0">Do kdy to chci zvládnout</label>
 
-              <input type="datetime-local" class="subgoal-date" />
+              <input
+                type="datetime-local"
+                id="subgoalDate0"
+                name="subgoal_date[]"
+                class="subgoal-date"
+              />
             </div>
           </div>
         </div>
@@ -116,7 +124,9 @@
           Přidat další krok
         </button>
 
-        <button type="submit" class="button-primary">Přidat sen</button>
+        <button type="submit" id="addDreamButton" class="button-primary">
+          Přidat sen
+        </button>
       </form>
     </main>
 

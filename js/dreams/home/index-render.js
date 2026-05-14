@@ -3,6 +3,11 @@ function renderDreamList(dreamList, dreams, filters) {
 
   const filteredDreams = getFilteredDreams(dreams, filters);
 
+  const floatingAddButton = document.querySelector(".floating-add-button");
+  if (floatingAddButton) {
+    floatingAddButton.classList.toggle("is-empty-state", dreams.length === 0);
+  }
+
   if (filteredDreams.length === 0) {
     const emptyState = dreamList.appendChild(
       createEmptyState(

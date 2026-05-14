@@ -1,45 +1,30 @@
 .floating-add-button {
   position: fixed;
-
   left: 50%;
-  bottom: 32px;
-
+  bottom: max(32px, env(safe-area-inset-bottom));
   transform: translateX(-50%);
-
   width: 84px;
   height: 84px;
-
   border-radius: 50%;
-
   background: var(--primary-gradient);
-
-  box-shadow: var(--primary-shadow-strong);
-
   z-index: 1000;
-
   transition:
-    transform 0.12s ease,
-    background-color 0.2s ease;
-
+    transform 0.18s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
 .floating-add-button::before,
 .floating-add-button::after {
   content: "";
-
   position: absolute;
-
   left: 50%;
   top: 50%;
-
   width: 34px;
   height: 4px;
-
   border-radius: 999px;
-
   background: white;
-
   transform: translate(-50%, -50%);
 }
 
@@ -47,12 +32,41 @@
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
+/* Empty state vibe */
+
+.floating-add-button.is-empty-state {
+  animation: floatingAddPulse 2.1s ease-in-out infinite;
+  box-shadow: 0 18px 38px rgba(59, 130, 246, 0.24);
+}
+
 @media (hover: hover) {
-  .floating-add-button:hover {
-    background: var(--primary-gradient-hover);
+  .floating-add-button.is-empty-state:hover {
+    transform: translateX(-50%) translateY(-4px) scale(1.04);
+    box-shadow: 0 24px 48px rgba(59, 130, 246, 0.34);
+    filter: brightness(1.04);
   }
 }
 
 .floating-add-button:active {
-  transform: translateX(-50%) scale(0.95);
+  transform: translateX(-50%) scale(0.94);
+}
+
+@keyframes floatingAddPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 18px 38px rgba(59, 130, 246, 0.24);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.06);
+    box-shadow: 0 24px 56px rgba(59, 130, 246, 0.38);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-add-button,
+  .floating-add-button.is-empty-state {
+    animation: none;
+    transition: none;
+  }
 }
