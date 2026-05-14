@@ -1,0 +1,15 @@
+@media (max-width: 520px) {
+  .detail-hero-top {
+    flex-direction: column;
+  }
+
+  .detail-tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

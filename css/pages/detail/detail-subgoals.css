@@ -1,0 +1,57 @@
+#subgoalsList {
+  display: grid;
+  gap: 14px;
+}
+
+.subgoal {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--primary-light);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.subgoal label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.subgoal label span {
+  flex: 1;
+}
+
+.subgoal p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.subgoal input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-top: 3px;
+  accent-color: var(--primary);
+}
+
+.empty-subgoals {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--primary-light);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.empty-subgoals p {
+  margin: 0;
+  color: var(--text-soft);
+}

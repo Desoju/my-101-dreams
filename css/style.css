@@ -21,7 +21,12 @@
 @import url("./components/empty-state.css");
 
 @import url("./pages/home.css");
-@import url("./pages/detail.css");
 @import url("./pages/add-dream.css");
 @import url("./pages/categories.css");
 @import url("./pages/offline.css");
+
+@import "./pages/detail/detail-base.css";
+@import "./pages/detail/detail-view.css";
+@import "./pages/detail/detail-subgoals.css";
+@import "./pages/detail/detail-edit.css";
+@import "./pages/detail/detail-responsive.css";
