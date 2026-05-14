@@ -4,7 +4,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
 
   if (backLink) {
     backLink.addEventListener("click", async function (event) {
-      if (!isFormDirty) {
+      if (!isEditDirty) {
         return;
       }
 
@@ -15,6 +15,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
       );
 
       if (shouldLeave) {
+        isEditDirty = false;
         window.location.href = backLink.href;
       }
     });

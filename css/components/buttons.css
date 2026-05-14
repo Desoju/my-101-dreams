@@ -268,3 +268,7 @@ button:active {
 
   box-shadow: var(--primary-shadow);
 }
+
+#installAppButton {
+  margin-bottom: 0.5rem;
+}

@@ -286,3 +286,7 @@
 #dreamCompletionDateCard:has(.clickable-detail-value) {
   cursor: pointer;
 }
+
+.pinterest-board-link {
+  margin-top: 1rem;
+}

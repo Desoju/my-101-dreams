@@ -62,8 +62,7 @@ function createCategoryItem(category) {
       const newColor = categoryItem.querySelector(".edit-category-color").value;
 
       if (categoryExists(newLabel, category.id)) {
-        alert("Kategorie s tímto názvem už existuje.");
-
+        showToast("Kategorie s tímto názvem už existuje.", "error");
         return;
       }
 
@@ -74,14 +73,20 @@ function createCategoryItem(category) {
 
   categoryItem
     .querySelector(".delete-category-button")
-    .addEventListener("click", function () {
-      const confirmDelete = confirm("Opravdu chceš smazat tuto kategorii?");
+    .addEventListener("click", async function () {
+      const confirmDelete = await showConfirm(
+        "Opravdu chceš smazat tuto kategorii?",
+      );
 
-      if (confirmDelete) {
-        deleteCustomCategory(category.id);
-
-        renderCustomCategories();
+      if (!confirmDelete) {
+        return;
       }
+
+      deleteCustomCategory(category.id);
+
+      renderCustomCategories();
+
+      showToast("Kategorie byla smazána.", "success");
     });
 
   return categoryItem;
@@ -117,7 +122,7 @@ if (categoryForm) {
     const newCategoryName = categoryName.value.trim();
 
     if (categoryExists(newCategoryName)) {
-      alert("Kategorie s tímto názvem už existuje.");
+      showToast("Kategorie s tímto názvem už existuje.", "error");
 
       return;
     }
@@ -147,17 +152,20 @@ window.addEventListener("beforeunload", function (event) {
 const backLink = document.querySelector(".back-link");
 
 if (backLink) {
-  backLink.addEventListener("click", function (event) {
+  backLink.addEventListener("click", async function (event) {
     if (!isCategoryFormDirty) {
       return;
     }
 
-    const shouldLeave = confirm(
+    event.preventDefault();
+
+    const shouldLeave = await showConfirm(
       "Máš neuloženou kategorii. Opravdu chceš odejít?",
     );
 
-    if (!shouldLeave) {
-      event.preventDefault();
+    if (shouldLeave) {
+      isCategoryFormDirty = false;
+      window.location.href = backLink.href;
     }
   });
 }

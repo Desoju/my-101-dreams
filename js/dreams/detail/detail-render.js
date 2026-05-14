@@ -5,6 +5,15 @@ function renderDreamViewMode(dream, dreams) {
   document.getElementById("dreamDescriptionText").textContent =
     dream.description || "Bez popisu";
 
+  const pinterestLink = document.getElementById("dreamPinterestBoardLink");
+
+  if (dream.pinterestBoardUrl) {
+    pinterestLink.href = dream.pinterestBoardUrl;
+    pinterestLink.style.display = "inline-flex";
+  } else {
+    pinterestLink.style.display = "none";
+  }
+
   document.getElementById("completeDreamFromDetailButton").style.display =
     dream.status === "dream_completed" ? "none" : "inline-flex";
 

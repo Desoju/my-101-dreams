@@ -152,6 +152,7 @@ function setupDreamForm() {
       id: Date.now(),
       name: dreamName,
       description: document.getElementById("dreamDescription").value,
+      pinterestBoardUrl: document.getElementById("dreamPinterestBoard").value,
       category: document.getElementById("dreamCategory").value,
       priority: finalPriority,
       completionDate: dreamDate,
@@ -189,15 +190,20 @@ window.addEventListener("beforeunload", function (event) {
 const backLink = document.querySelector(".back-link");
 
 if (backLink) {
-  backLink.addEventListener("click", function (event) {
+  backLink.addEventListener("click", async function (event) {
     if (!isFormDirty) {
       return;
     }
 
-    const shouldLeave = confirm("Máš neuložené změny. Opravdu chceš odejít?");
+    event.preventDefault();
 
-    if (!shouldLeave) {
-      event.preventDefault();
+    const shouldLeave = await showConfirm(
+      "Máš neuložené změny. Opravdu chceš odejít?",
+    );
+
+    if (shouldLeave) {
+      isFormDirty = false;
+      window.location.href = backLink.href;
     }
   });
 }

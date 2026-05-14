@@ -23,6 +23,9 @@ function fillDreamEditMode(dream) {
   document.getElementById("dreamDescriptionInput").value =
     dream.description || "";
 
+  document.getElementById("dreamPinterestBoardInput").value =
+    dream.pinterestBoardUrl || "";
+
   document.getElementById("dreamPriorityInput").value = dream.priority || "C";
 
   document.getElementById("dreamCompletionDateInput").value =
@@ -101,6 +104,7 @@ function saveDreamEditChanges(dream) {
 
   dream.name = newDreamName;
   dream.description = document.getElementById("dreamDescriptionInput").value;
+  dream.pinterestBoardUrl = document.getElementById("dreamPinterestBoardInput",).value;
   dream.completionDate = dreamCompletionDate;
   dream.status = document.getElementById("dreamStatusInput").value;
 
