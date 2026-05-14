@@ -16,7 +16,13 @@ function toggleDreamPin(dream, dreams) {
 }
 
 async function deleteDream(dreams, dreamId) {
-  const confirmDelete = await showConfirm("Opravdu chceš tento sen smazat?");
+  const confirmDelete = await showConfirm({
+    title: "Smazat sen?",
+    message: "Opravdu chceš tento sen smazat?",
+    confirmText: "Smazat",
+    cancelText: "Zrušit",
+    variant: "danger",
+  });
 
   if (!confirmDelete) {
     return;

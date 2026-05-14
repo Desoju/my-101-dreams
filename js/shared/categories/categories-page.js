@@ -74,9 +74,13 @@ function createCategoryItem(category) {
   categoryItem
     .querySelector(".delete-category-button")
     .addEventListener("click", async function () {
-      const confirmDelete = await showConfirm(
-        "Opravdu chceš smazat tuto kategorii?",
-      );
+      const confirmDelete = await showConfirm({
+        title: "Smazat kategorii?",
+        message: "Opravdu chceš smazat tuto kategorii?",
+        confirmText: "Smazat",
+        cancelText: "Zrušit",
+        variant: "danger",
+      });
 
       if (!confirmDelete) {
         return;

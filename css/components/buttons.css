@@ -90,6 +90,17 @@ button:active {
   box-shadow: var(--success-shadow);
 }
 
+button:disabled,
+.button-primary:disabled,
+.button-secondary:disabled,
+.button-soft:disabled,
+.button-danger:disabled,
+.button-success:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* =========================
    BUTTON SIZES
 ========================= */
