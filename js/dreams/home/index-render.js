@@ -4,7 +4,10 @@ function renderDreamList(dreamList, dreams, filters) {
   const filteredDreams = getFilteredDreams(dreams, filters);
 
   if (filteredDreams.length === 0) {
-    const emptyState = createEmptyState("Žádné sny neodpovídají filtru.");
+    const emptyState = createEmptyState(
+      "Nic nebylo nalezeno",
+      "Zkus upravit hledání nebo vyčistit filtry.",
+    );
 
     dreamList.appendChild(emptyState);
 

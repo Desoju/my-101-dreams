@@ -5,6 +5,8 @@ function setupDreamForm() {
     return;
   }
 
+  document.getElementById("dreamName")?.focus();
+
   dreamForm.addEventListener("input", function () {
     checkIfDreamFormIsDirty();
   });

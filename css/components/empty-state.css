@@ -1,0 +1,24 @@
+.empty-state {
+  padding: 3rem 1.5rem;
+
+  border-radius: 1.5rem;
+
+  background: white;
+
+  text-align: center;
+}
+
+.empty-state-title {
+  margin: 0;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.empty-state-description {
+  margin: 0.75rem 0 0;
+
+  color: var(--color-text-muted);
+
+  line-height: 1.6;
+}

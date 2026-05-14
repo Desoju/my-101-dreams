@@ -16,17 +16,24 @@ function renderSubgoals(dream, dreams, renderViewMode) {
 
   if (visibleSubgoals.length === 0) {
     subgoalsList.innerHTML = `
-        <div class="empty-subgoals">
-          <p>Zatím nemáš žádné kroky ke splnění.</p>
+      <div class="empty-state">
+        <h2 class="empty-state-title">
+          Zatím tu nejsou žádné kroky
+        </h2>
 
-          <button
-            type="button"
-            id="createFirstSubgoalButton"
-          >
-            Přidat první krok
-          </button>
-        </div>
-      `;
+        <p class="empty-state-description">
+          Rozděl si sen na menší kroky. Bude se ti lépe plnit.
+        </p>
+
+        <button
+          type="button"
+          id="createFirstSubgoalButton"
+          class="button-primary"
+        >
+          Přidat první krok
+        </button>
+      </div>
+    `;
 
     document
       .getElementById("createFirstSubgoalButton")

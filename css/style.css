@@ -12,6 +12,7 @@
 @import url("./components/stats.css");
 @import url("./components/toast.css");
 @import url("./components/confirm-modal.css");
+@import url("./components/empty-state.css");
 
 @import url("./pages/home.css");
 @import url("./pages/detail.css");
