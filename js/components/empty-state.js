@@ -1,4 +1,4 @@
-function createEmptyState(title, description = "") {
+function createEmptyState(title, description = "", action = null) {
   const emptyState = document.createElement("div");
 
   emptyState.classList.add("empty-state");
@@ -14,6 +14,16 @@ function createEmptyState(title, description = "") {
           <p class="empty-state-description">
             ${description}
           </p>
+        `
+        : ""
+    }
+
+    ${
+      action
+        ? `
+          <a href="${action.href}" class="empty-state-action button-primary">
+            ${action.label}
+          </a>
         `
         : ""
     }

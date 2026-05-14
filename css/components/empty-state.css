@@ -6,6 +6,8 @@
   background: white;
 
   text-align: center;
+
+  animation: fadeIn 0.25s ease;
 }
 
 .empty-state-title {
@@ -21,4 +23,35 @@
   color: var(--color-text-muted);
 
   line-height: 1.6;
+}
+
+.empty-state-action {
+  margin-top: 1.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.85rem 1.25rem;
+
+  text-decoration: none;
+}
+
+.empty-state-description {
+  max-width: 28rem;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

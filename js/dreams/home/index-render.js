@@ -4,12 +4,16 @@ function renderDreamList(dreamList, dreams, filters) {
   const filteredDreams = getFilteredDreams(dreams, filters);
 
   if (filteredDreams.length === 0) {
-    const emptyState = createEmptyState(
-      "Nic nebylo nalezeno",
-      "Zkus upravit hledání nebo vyčistit filtry.",
+    const emptyState = dreamList.appendChild(
+      createEmptyState(
+        "Zatím tu nemáš žádné sny",
+        "Začni prvním snem, který si chceš splnit.",
+        {
+          label: "Přidat první sen",
+          href: "pages/add-dream.html",
+        },
+      ),
     );
-
-    dreamList.appendChild(emptyState);
 
     return;
   }

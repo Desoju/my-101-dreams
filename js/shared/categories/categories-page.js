@@ -102,7 +102,7 @@ function renderCustomCategories() {
   customCategoriesList.innerHTML = "";
 
   if (categories.length === 0) {
-    customCategoriesList.innerHTML = customCategoriesList.appendChild(
+    customCategoriesList.appendChild(
       createEmptyState(
         "Zatím nemáš žádné vlastní kategorie",
         "Přidej si vlastní kategorie, aby se ti sny lépe třídily.",
