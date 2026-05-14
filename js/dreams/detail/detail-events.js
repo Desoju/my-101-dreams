@@ -110,7 +110,9 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
 
   document
     .getElementById("pinDreamButton")
-    .addEventListener("click", function () {
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+
       toggleDreamPin(dream, dreams);
       renderDreamViewMode(dream, dreams);
     });

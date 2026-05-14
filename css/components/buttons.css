@@ -113,173 +113,30 @@ button:disabled,
   width: auto;
 }
 
+
 /* =========================
-   FLOATING BUTTON
+   ACTIVE BUTTONS
 ========================= */
 
+button,
+.button-primary,
+.button-secondary,
+.button-soft,
+.button-danger,
+.button-success,
 .floating-add-button {
-  position: fixed;
-
-  left: 50%;
-  bottom: 32px;
-
-  transform: translateX(-50%);
-
-  width: 84px;
-  height: 84px;
-
-  border-radius: 50%;
-
-  background: var(--primary-gradient);
-
-  box-shadow: var(--primary-shadow-strong);
-
-  z-index: 1000;
-
-  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.12s ease,
+    opacity 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.floating-add-button::before,
-.floating-add-button::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  width: 34px;
-  height: 4px;
-
-  border-radius: 999px;
-
-  background: white;
-
-  transform: translate(-50%, -50%);
-}
-
-.floating-add-button::after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-@media (hover: hover) {
-  .floating-add-button:hover {
-    background: var(--primary-gradient-hover);
-  }
-}
-
+button:active,
+.button-primary:active,
+.button-secondary:active,
+.button-soft:active,
+.button-danger:active,
+.button-success:active,
 .floating-add-button:active {
-  transform: translateX(-50%) scale(0.95);
-}
-
-/* =========================
-   LINKS AS BUTTONS
-========================= */
-
-.manage-categories-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-
-  margin: 0 0 20px;
-  padding: 14px 16px;
-
-  border: 1px solid var(--primary-light);
-  border-radius: 18px;
-
-  background: var(--surface);
-  color: var(--text);
-
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  box-shadow: var(--manage-link-shadow);
-
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-}
-
-@media (hover: hover) {
-  .manage-categories-link:hover {
-    background: var(--primary-soft);
-  }
-}
-
-.manage-categories-link:active {
   transform: scale(0.98);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 6px;
-
-  margin-bottom: 18px;
-  padding: 10px 14px;
-
-  border: 1px solid var(--primary-light);
-  border-radius: var(--radius-pill);
-
-  background: var(--surface);
-
-  backdrop-filter: blur(10px);
-
-  color: var(--text);
-
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  box-shadow: var(--shadow-soft);
-
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-}
-
-@media (hover: hover) {
-  .back-link:hover {
-    background: var(--primary-soft);
-  }
-}
-
-.back-link:active {
-  transform: scale(0.96);
-}
-
-/* =========================
-   SPECIAL BUTTONS
-========================= */
-
-.pin-dream-button {
-  width: auto;
-
-  padding: 6px 9px;
-
-  background: var(--primary-soft);
-  color: var(--primary);
-
-  border: 1px solid var(--primary-light);
-  border-radius: var(--radius-pill);
-
-  box-shadow: none;
-}
-
-.empty-subgoals button {
-  background: var(--primary-gradient);
-
-  color: white;
-
-  box-shadow: var(--primary-shadow);
-}
-
-#installAppButton {
-  margin-bottom: 0.5rem;
 }

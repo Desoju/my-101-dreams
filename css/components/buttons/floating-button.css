@@ -1,0 +1,58 @@
+.floating-add-button {
+  position: fixed;
+
+  left: 50%;
+  bottom: 32px;
+
+  transform: translateX(-50%);
+
+  width: 84px;
+  height: 84px;
+
+  border-radius: 50%;
+
+  background: var(--primary-gradient);
+
+  box-shadow: var(--primary-shadow-strong);
+
+  z-index: 1000;
+
+  transition:
+    transform 0.12s ease,
+    background-color 0.2s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.floating-add-button::before,
+.floating-add-button::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 34px;
+  height: 4px;
+
+  border-radius: 999px;
+
+  background: white;
+
+  transform: translate(-50%, -50%);
+}
+
+.floating-add-button::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+@media (hover: hover) {
+  .floating-add-button:hover {
+    background: var(--primary-gradient-hover);
+  }
+}
+
+.floating-add-button:active {
+  transform: translateX(-50%) scale(0.95);
+}

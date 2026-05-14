@@ -1,0 +1,49 @@
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  padding: 15px 18px;
+
+  border: none;
+  border-radius: 18px;
+
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled,
+.button-primary:disabled,
+.button-secondary:disabled,
+.button-soft:disabled,
+.button-danger:disabled,
+.button-success:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-full {
+  width: 100%;
+}
+
+.button-auto {
+  width: auto;
+}
