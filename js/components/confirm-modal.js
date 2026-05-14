@@ -36,15 +36,20 @@ function showConfirm(options) {
           <h2 id="confirmModalTitle" class="confirm-modal-title"></h2>
           <p id="confirmModalMessage"></p>
 
-          <button
-            type="button"
-            id="confirmModalCancelButton"
-            class="button-soft"
-          >
-            Zrušit
-          </button>
+          <div class="confirm-modal-actions">
+            <button
+              type="button"
+              id="confirmModalCancelButton"
+              class="button-soft"
+            >
+              Zrušit
+            </button>
 
-            <button type="button" id="confirmModalConfirmButton" class="button-primary">
+            <button
+              type="button"
+              id="confirmModalConfirmButton"
+              class="button-primary"
+            >
               Potvrdit
             </button>
           </div>
