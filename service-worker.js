@@ -68,7 +68,10 @@ const FILES_TO_CACHE = [
   "./js/components/confirm-modal.js",
   "./js/components/onboarding.js",
 
-  "./css/base/variables.css",
+  "./css/base/tokens/colors.css",
+  "./css/base/tokens/components.css",
+  "./css/base/tokens/system.css",
+  
   "./css/base/base.css",
 
   "./css/layout/layout.css",

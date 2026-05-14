@@ -2,21 +2,27 @@
 .detail-card,
 .detail-info-card,
 .detail-edit-card {
-  background: var(--surface);
-  border: 1px solid var(--primary-light);
+  border: var(--border-primary-light);
   border-radius: var(--radius-card);
+
+  background: var(--surface);
+
   box-shadow: var(--shadow-card);
 }
 
 .detail-muted-text {
-  margin: 0 0 10px;
+  margin: 0 0 var(--space-2);
+
   color: var(--text-soft);
-  font-size: 14px;
+
+  font-size: var(--font-size-sm);
 }
 
 .clickable-detail-value {
   cursor: pointer;
+
   color: var(--primary);
+
   text-decoration: underline;
   text-underline-offset: 3px;
 }

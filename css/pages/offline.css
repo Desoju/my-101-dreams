@@ -1,22 +1,22 @@
 .offline-page {
-  min-height: 100vh;
-
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+
+  padding: var(--space-8);
 
   text-align: center;
-
-  padding: 2rem;
 }
 
 .offline-page h1 {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }
 
 .offline-page p {
-  margin-bottom: 2rem;
-
   max-width: 320px;
+
+  margin-bottom: var(--space-8);
 }

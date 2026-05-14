@@ -1,33 +1,30 @@
 .dream-card {
   display: block;
 
-  padding: 18px;
+  padding: var(--space-4-5);
 
-  text-decoration: none;
-  color: inherit;
+  border: var(--border-primary-light);
+  border-radius: var(--radius-card);
 
   background: var(--surface);
+  color: inherit;
 
-  border: 1px solid var(--primary-light);
-  border-radius: var(--radius-card);
+  text-decoration: none;
 
   box-shadow: var(--shadow-card);
 
   cursor: pointer;
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
+  transition: var(--transition-card);
 }
 
 .dream-card-top {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
 
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .dream-card-top h3 {
@@ -35,13 +32,13 @@
 
   margin: 0;
 
-  font-size: 22px;
+  color: var(--text);
+
+  font-size: var(--font-size-lg);
   line-height: 1.15;
 
   letter-spacing: 0.5px;
   text-transform: uppercase;
-
-  color: var(--text);
 }
 
 .dream-card-tags {
@@ -49,24 +46,27 @@
   flex-direction: column;
   align-items: flex-end;
 
-  gap: 6px;
+  gap: var(--space-1-5);
 }
 
 .dream-card-date {
-  margin: 0 0 14px;
+  margin: 0 0 var(--space-3-5);
 
-  font-size: 14px;
   color: var(--text-soft);
+
+  font-size: var(--font-size-sm);
 }
 
 .dream-progress-preview {
-  margin: 8px 0 0;
+  margin: var(--space-2) 0 0;
 
-  font-size: 13px;
   color: var(--text-soft);
+
+  font-size: var(--font-size-xs-plus);
 }
 
 .dream-card:active {
   cursor: grabbing;
-  transform: scale(0.985);
+
+  transform: var(--scale-card-press);
 }

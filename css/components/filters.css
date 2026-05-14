@@ -1,64 +1,63 @@
 .search-filter-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-2-5);
 
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
 }
 
 .dream-search-input {
-  padding: 14px 18px;
+  padding: var(--space-3-5) var(--space-4-5);
 
-  border: 1px solid var(--primary-light);
-  border-radius: 999px;
+  border: var(--border-primary-light);
+  border-radius: var(--radius-pill);
 
   background: var(--surface);
-
-  font-size: 14px;
   color: var(--text);
+
+  font-size: var(--font-size-sm);
 
   box-shadow: var(--primary-shadow-input);
 }
 
 .dream-search-input:focus {
-  outline: none;
-
   border-color: var(--primary);
+  outline: none;
 
   box-shadow: var(--primary-focus-ring);
 }
 
 .filter-icon-button {
   width: 100%;
-  padding: 14px 16px;
+
+  padding: var(--space-3-5) var(--space-4);
 
   border: none;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 
   background: var(--primary-gradient);
+  color: var(--surface);
 
-  color: white;
-
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
 
   box-shadow: var(--shadow-soft);
 }
 
 .filters-panel {
   display: grid;
-  gap: 14px;
+  gap: var(--space-3-5);
 
-  max-height: 55vh;
+  max-height: var(--filter-panel-max-height);
   overflow-y: auto;
 
-  margin-bottom: 20px;
-  padding: 18px;
+  margin-bottom: var(--space-5);
+  padding: var(--space-4-5);
+
+  border: var(--border-primary-light);
+  border-radius: var(--radius-card);
 
   background: var(--surface);
-
-  border: 1px solid var(--primary-light);
-  border-radius: 24px;
 
   box-shadow: var(--shadow-card);
 }
@@ -68,7 +67,7 @@
 .priority-filter-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .checkbox-filter {
@@ -76,29 +75,25 @@
   align-items: center;
   justify-content: center;
 
-  padding: 10px 14px;
+  padding: var(--space-2-5) var(--space-3-5);
 
-  border: 1px solid var(--primary-light);
-  border-radius: 999px;
+  border: var(--border-primary-light);
+  border-radius: var(--radius-pill);
 
   background: var(--primary-soft);
   color: var(--text);
 
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   line-height: 1;
 
   cursor: pointer;
   user-select: none;
 
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: var(--transition-filter);
 }
 
 .checkbox-filter:hover {
-  transform: translateY(-1px);
+  transform: var(--translate-hover-up);
 }
 
 .checkbox-filter input {
@@ -106,44 +101,43 @@
 }
 
 .checkbox-filter:has(input:checked) {
-  background: var(--primary-gradient);
-
-  color: white;
-
   border-color: transparent;
+
+  background: var(--primary-gradient);
+  color: var(--surface);
 
   box-shadow: var(--primary-shadow-soft);
 }
 
 .filters-panel > label {
-  margin-top: 4px;
-
-  font-size: 13px;
-  font-weight: 700;
+  margin-top: var(--space-1);
 
   color: var(--text-soft);
+
+  font-size: var(--font-size-xs-plus);
+  font-weight: var(--font-weight-bold);
 }
 
 .filters-actions {
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 
 .filters-row,
 .filters-bottom-row {
   display: grid;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .filters-group {
   display: grid;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .filters-bottom-row #clearFiltersButton {
+  border: var(--border-primary-light);
+
   background: var(--primary-soft);
   color: var(--primary);
-
-  border: 1px solid var(--primary-light);
 
   box-shadow: none;
 }
@@ -158,45 +152,44 @@
 
 .filters-inline-group {
   display: flex;
-  align-items: center;
-  gap: 12px;
-
   flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
 }
 
 .filters-inline-group > label {
   margin: 0;
+
   white-space: nowrap;
 }
 
 .filters-bottom-row {
-  display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: var(--space-2-5);
 }
 
 .filters-bottom-row .checkbox-filter,
 #clearFiltersButton {
-  width: 100%;
-  min-height: 48px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 12px 14px;
+  width: 100%;
+  min-height: var(--filter-button-min-height);
 
-  border-radius: 16px;
+  padding: var(--space-3) var(--space-3-5);
 
-  font-size: 13px;
+  border-radius: var(--space-4);
+
+  font-size: var(--font-size-xs-plus);
   text-align: center;
 }
 
 .filter-group-title {
-  margin: 0 0 8px;
-
-  font-size: 14px;
-  font-weight: 700;
+  margin: 0 0 var(--space-2);
 
   color: var(--text);
+
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
 }

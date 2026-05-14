@@ -1,25 +1,32 @@
 #subgoalsList {
   display: grid;
-  gap: 14px;
+  gap: var(--space-3-5);
 }
 
 .subgoal {
   display: grid;
-  gap: 8px;
-  padding: 16px;
+  gap: var(--space-2);
+
+  padding: var(--space-4);
+
+  border: var(--border-primary-light);
+  border-radius: var(--radius-button);
+
   background: var(--surface);
-  border: 1px solid var(--primary-light);
-  border-radius: 18px;
+
   box-shadow: var(--shadow-soft);
 }
 
 .subgoal label {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--space-3);
+
   margin: 0;
+
   color: var(--text);
-  font-size: 15px;
+
+  font-size: var(--font-size-md);
   line-height: 1.4;
 }
 
@@ -29,29 +36,39 @@
 
 .subgoal p {
   margin: 0;
+
   color: var(--text-soft);
-  font-size: 13px;
+
+  font-size: var(--font-size-xs-plus);
   line-height: 1.4;
 }
 
 .subgoal input[type="checkbox"] {
   flex-shrink: 0;
+
   margin-top: 3px;
+
   accent-color: var(--primary);
 }
 
 .empty-subgoals {
   display: grid;
-  gap: 14px;
-  padding: 18px;
+  gap: var(--space-3-5);
+
+  padding: var(--space-4-5);
+
+  border: var(--border-primary-light);
+  border-radius: var(--radius-item);
+
   background: var(--surface);
-  border: 1px solid var(--primary-light);
-  border-radius: 20px;
+
   text-align: center;
+
   box-shadow: var(--shadow-soft);
 }
 
 .empty-subgoals p {
   margin: 0;
+
   color: var(--text-soft);
 }

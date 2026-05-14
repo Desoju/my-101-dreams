@@ -3,41 +3,40 @@
 .button-soft,
 .button-danger,
 .button-success {
-  font: inherit;
-  font-size: 15px;
-  font-weight: 700;
-
-  border-radius: 18px;
   border: none;
+  border-radius: var(--radius-button);
+
+  font: inherit;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
 }
 
 .home-action-button {
-  border: none;
   padding: 5px;
+
+  border: none;
 }
 
 .button-primary {
   background: var(--primary-gradient);
-  color: white;
+  color: var(--surface);
 
   box-shadow: var(--primary-shadow);
 }
 
-.button-secondary {
+.button-secondary,
+.button-soft {
+  border: var(--border-primary-light);
+
   background: var(--primary-soft);
   color: var(--primary);
+}
 
-  border: 1px solid var(--primary-light);
-
+.button-secondary {
   box-shadow: var(--shadow-soft);
 }
 
 .button-soft {
-  background: var(--primary-soft);
-  color: var(--primary);
-
-  border: 1px solid var(--primary-light);
-
   box-shadow: none;
 }
 
@@ -50,7 +49,7 @@
 
 .button-success {
   background: var(--success-gradient);
-  color: white;
+  color: var(--surface);
 
   box-shadow: var(--success-shadow);
 }

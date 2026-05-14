@@ -1,0 +1,71 @@
+:root {
+  /* Buttons */
+  --button-padding-y: 15px;
+  --button-padding-x: 18px;
+
+  /* Forms */
+  --form-gap: 22px;
+  --form-control-radius: 16px;
+  --form-control-padding: 14px 16px;
+  --form-select-padding-right: 44px;
+  --form-textarea-min-height: 120px;
+
+  /* Filters */
+  --filter-panel-max-height: 55vh;
+  --filter-button-min-height: 48px;
+
+  /* Progress */
+  --progress-height: 10px;
+
+  /* Stats */
+  --stat-card-min-height: 86px;
+
+  /* Modal */
+  --modal-width: 24rem;
+
+  --shadow-modal: 0 20px 40px rgba(15, 23, 42, 0.2);
+
+  /* Toast */
+  --toast-success: #16a34a;
+  --toast-error: var(--field-error);
+  --toast-info: var(--primary-dark);
+
+  --toast-min-width: 16rem;
+  --toast-max-width-offset: 2rem;
+
+  --toast-icon-bg: rgba(255, 255, 255, 0.2);
+
+  /* Floating button */
+  --size-fab: 84px;
+  --size-fab-icon-width: 34px;
+  --size-fab-icon-height: 4px;
+
+  --shadow-fab: 0 18px 38px rgba(6, 182, 212, 0.24);
+
+  --shadow-fab-hover: 0 24px 48px rgba(6, 182, 212, 0.34);
+
+  --shadow-fab-pulse: 0 24px 56px rgba(6, 182, 212, 0.38);
+
+  --transition-fab:
+    transform 0.18s ease, box-shadow 0.22s ease, filter 0.22s ease;
+
+  --fab-hover-transform: translateX(-50%) translateY(-4px) scale(1.04);
+
+  --fab-active-transform: translateX(-50%) scale(0.94);
+
+  --fab-pulse-scale: 1.06;
+
+  /* Sticky actions */
+  --shadow-sticky-action: 0 14px 34px rgba(6, 182, 212, 0.28);
+
+  --shadow-sticky-action-hover: 0 18px 42px rgba(6, 182, 212, 0.36);
+
+  /* Home */
+  --home-sticky-content-top: 52px;
+
+  /* Page spacing */
+  --add-dream-form-padding-bottom: 96px;
+
+  /* Badges */
+  --badge-padding: 6px 10px;
+}

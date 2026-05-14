@@ -5,21 +5,18 @@ button {
 
   width: 100%;
 
-  padding: 15px 18px;
+  padding: var(--button-padding-y) var(--button-padding-x);
 
   border: none;
-  border-radius: 18px;
+  border-radius: var(--radius-button);
 
   font: inherit;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
 
   cursor: pointer;
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  transition: var(--transition-button-extended);
 
   -webkit-tap-highlight-color: transparent;
 }
@@ -31,10 +28,7 @@ button,
 .button-danger,
 .button-success,
 .floating-add-button {
-  transition:
-    transform 0.12s ease,
-    opacity 0.2s ease,
-    background-color 0.2s ease;
+  transition: var(--transition-button);
 }
 
 button:active,
@@ -43,5 +37,5 @@ button:active,
 .button-soft:active,
 .button-danger:active,
 .button-success:active {
-  transform: scale(0.98);
+  transform: var(--scale-press);
 }

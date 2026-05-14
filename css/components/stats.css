@@ -3,24 +3,24 @@
 
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 
-  gap: 10px;
+  gap: var(--space-2-5);
 
-  margin-bottom: 24px;
+  margin-bottom: var(--space-6);
 }
 
 .stat-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  min-height: 86px;
-  padding: 12px;
+  min-height: var(--stat-card-min-height);
+  padding: var(--space-3);
+
+  border: var(--border-primary-light);
+  border-radius: var(--radius-button);
 
   background: var(--surface);
-
-  border: 1px solid var(--primary-light);
-  border-radius: 18px;
 
   text-align: center;
 
@@ -28,37 +28,35 @@
 
   box-shadow: var(--shadow-soft);
 
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  transition: var(--transition-stat-card);
 
   -webkit-tap-highlight-color: transparent;
 }
 
 .stat-card:active {
-  transform: scale(0.98);
+  transform: var(--scale-press);
 }
 
 .stat-card span {
   display: block;
 
-  font-size: 28px;
-  font-weight: 700;
-
   color: var(--text);
+
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
 }
 
 .stat-card p {
-  margin: 4px 0 0;
-
-  font-size: 13px;
+  margin: var(--space-1) 0 0;
 
   color: var(--text-soft);
+
+  font-size: var(--font-size-xs-plus);
 }
 
 .stat-card-active {
   background: var(--primary-soft);
+
   border-color: var(--primary);
 }
 

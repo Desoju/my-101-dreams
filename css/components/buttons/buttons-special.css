@@ -3,23 +3,22 @@
 
   padding: 6px 9px;
 
+  border: var(--border-primary-light);
+  border-radius: var(--radius-pill);
+
   background: var(--primary-soft);
   color: var(--primary);
-
-  border: 1px solid var(--primary-light);
-  border-radius: var(--radius-pill);
 
   box-shadow: none;
 }
 
 .empty-subgoals button {
   background: var(--primary-gradient);
-
-  color: white;
+  color: var(--surface);
 
   box-shadow: var(--primary-shadow);
 }
 
 #installAppButton {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
