@@ -40,8 +40,20 @@ function renderSubgoals(dream, dreams, renderViewMode) {
       .addEventListener("click", function () {
         fillDreamEditMode(dream);
 
+        const editSubgoalsContainer = document.getElementById(
+          "editSubgoalsContainer",
+        );
+
+        const subgoalForm = createSubgoalEditField();
+
+        editSubgoalsContainer.appendChild(subgoalForm);
+
         document.getElementById("viewMode").style.display = "none";
         document.getElementById("editMode").style.display = "grid";
+
+        scrollToElement(subgoalForm, {
+          block: "center",
+        });
       });
 
     return;

@@ -84,6 +84,20 @@ function saveDreamEditChanges(dream) {
     "dreamCompletionDateInput",
   ).value;
 
+  const dreamNameInput = document.getElementById("dreamNameInput");
+
+  if (dreamNameInput && !dreamNameInput.value.trim()) {
+    scrollToElement(dreamNameInput, {
+      block: "center",
+    });
+
+    dreamNameInput.focus();
+
+    showToast("Název snu je povinný.");
+
+    return;
+  }
+
   const editedSubgoals = collectEditedSubgoals();
 
   if (dreamCompletionDate) {
@@ -104,7 +118,9 @@ function saveDreamEditChanges(dream) {
 
   dream.name = newDreamName;
   dream.description = document.getElementById("dreamDescriptionInput").value;
-  dream.pinterestBoardUrl = document.getElementById("dreamPinterestBoardInput",).value;
+  dream.pinterestBoardUrl = document.getElementById(
+    "dreamPinterestBoardInput",
+  ).value;
   dream.completionDate = dreamCompletionDate;
   dream.status = document.getElementById("dreamStatusInput").value;
 

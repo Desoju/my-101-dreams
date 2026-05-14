@@ -53,13 +53,17 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
   document
     .getElementById("addEditSubgoalButton")
     .addEventListener("click", function () {
-      document
-        .getElementById("editSubgoalsContainer")
-        .appendChild(createSubgoalEditField());
+      const editSubgoalsContainer = document.getElementById(
+        "editSubgoalsContainer",
+      );
 
-      updateEditSubgoalDateLimits();
+      const subgoalForm = createSubgoalEditField();
 
-      isEditDirty = true;
+      editSubgoalsContainer.appendChild(subgoalForm);
+
+      scrollToElement(subgoalForm, {
+        block: "center",
+      });
     });
 
   editMode.addEventListener("input", function () {

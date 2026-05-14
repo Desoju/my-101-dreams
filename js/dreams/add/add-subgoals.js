@@ -65,6 +65,10 @@ function setupAddSubgoalButton() {
     subgoalsContainer.appendChild(subgoalForm);
     updateSubgoalDateLimits();
     checkIfDreamFormIsDirty();
+
+    scrollToElement(subgoalForm, {
+      block: "center",
+    });
   });
 }
 

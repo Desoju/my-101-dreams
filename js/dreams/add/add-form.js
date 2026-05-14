@@ -19,6 +19,12 @@ function setupDreamForm() {
   dreamForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    if (!dreamForm.checkValidity()) {
+      scrollToFirstInvalidField(dreamForm);
+      dreamForm.reportValidity();
+      return;
+    }
+
     const dreams = getDreams();
 
     const selectedPriority = document.getElementById("dreamPriority").value;
