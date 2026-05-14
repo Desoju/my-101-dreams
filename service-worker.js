@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v1.1.1";
+const CACHE_NAME = "my-101-dreams-v1.1.3";
 
 const FILES_TO_CACHE = [
   "./",
@@ -65,13 +65,19 @@ const FILES_TO_CACHE = [
   "./js/components/stat-card.js",
   "./js/components/toast.js",
   "./js/components/confirm-modal.js",
+  "./js/components/onboarding.js",
 
   "./css/base/variables.css",
   "./css/base/base.css",
 
   "./css/layout/layout.css",
 
-  "./css/components/buttons.css",
+  "./css/components/buttons/buttons-base.css",
+  "./css/components/buttons/buttons-variants.css",
+  "./css/components/buttons/buttons-links.css",
+  "./css/components/buttons/floating-button.css",
+  "./css/components/buttons/buttons-special.css",
+
   "./css/components/cards.css",
   "./css/components/forms.css",
   "./css/components/badges.css",

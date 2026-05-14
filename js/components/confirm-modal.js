@@ -13,7 +13,9 @@ function normalizeConfirmOptions(options) {
     title: options.title || "",
     message: options.message || "",
     confirmText: options.confirmText || "Potvrdit",
-    cancelText: options.cancelText || "Zrušit",
+    cancelText: Object.prototype.hasOwnProperty.call(options, "cancelText")
+      ? options.cancelText
+      : "Zrušit",
     variant: options.variant || "primary",
   };
 }
@@ -34,10 +36,13 @@ function showConfirm(options) {
           <h2 id="confirmModalTitle" class="confirm-modal-title"></h2>
           <p id="confirmModalMessage"></p>
 
-          <div class="confirm-modal-actions">
-            <button type="button" id="confirmModalCancelButton" class="button-soft">
-              Zrušit
-            </button>
+          <button
+            type="button"
+            id="confirmModalCancelButton"
+            class="button-soft"
+          >
+            Zrušit
+          </button>
 
             <button type="button" id="confirmModalConfirmButton" class="button-primary">
               Potvrdit
@@ -60,7 +65,13 @@ function showConfirm(options) {
     messageElement.textContent = config.message;
 
     confirmButton.textContent = config.confirmText;
-    cancelButton.textContent = config.cancelText;
+
+    if (config.cancelText) {
+      cancelButton.style.display = "inline-flex";
+      cancelButton.textContent = config.cancelText;
+    } else {
+      cancelButton.style.display = "none";
+    }
 
     confirmButton.className =
       config.variant === "danger" ? "button-danger" : "button-primary";
