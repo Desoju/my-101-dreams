@@ -1,5 +1,6 @@
+setupDreamForm();
+
 setupDreamCategorySelect();
 setupAddSubgoalButton();
-setupDreamForm();
 setupDatePickerOpenOnClick();
 setupAddDreamNavigationProtection();

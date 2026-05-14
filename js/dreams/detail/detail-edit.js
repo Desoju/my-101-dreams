@@ -65,38 +65,49 @@ if (dreamCompletionDateInput) {
 
 function saveDreamEditChanges(dream) {
   const selectedPriority = document.getElementById("dreamPriorityInput").value;
-
   const dreams = getDreams();
+
+  const dreamTitleInput = document.getElementById("dreamTitleInput");
+
+  clearFieldError(dreamTitleInput);
+  dreamTitleInput.classList.remove("field-invalid");
+
+  if (!dreamTitleInput.value.trim()) {
+    dreamTitleInput.classList.add("field-invalid");
+    showFieldError(dreamTitleInput, "Název snu je povinný.");
+
+    scrollToElement(dreamTitleInput, {
+      block: "center",
+    });
+
+    dreamTitleInput.focus();
+
+    return false;
+  }
+
+  const newDreamName = dreamTitleInput.value.trim();
 
   if (selectedPriority === "A" && !canSetPriorityA(dreams, dream.id)) {
     showToast("Priorita A je omezená na 10 snů.", "error");
     return false;
   }
 
-  const newDreamName = document.getElementById("dreamTitleInput").value.trim();
-
   if (dreamExistsByName(dreams, newDreamName, dream.id)) {
-    showToast("Sen s tímto názvem už existuje.", "error");
+    dreamTitleInput.classList.add("field-invalid");
+    showFieldError(dreamTitleInput, "Sen s tímto názvem už existuje.");
+
+    scrollToElement(dreamTitleInput, {
+      block: "center",
+    });
+
+    dreamTitleInput.focus();
+
     return false;
   }
 
   const dreamCompletionDate = document.getElementById(
     "dreamCompletionDateInput",
   ).value;
-
-  const dreamNameInput = document.getElementById("dreamNameInput");
-
-  if (dreamNameInput && !dreamNameInput.value.trim()) {
-    scrollToElement(dreamNameInput, {
-      block: "center",
-    });
-
-    dreamNameInput.focus();
-
-    showToast("Název snu je povinný.");
-
-    return;
-  }
 
   const editedSubgoals = collectEditedSubgoals();
 

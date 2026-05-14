@@ -60,3 +60,16 @@
   transform: translateY(-2px);
   box-shadow: 0 18px 42px rgba(59, 130, 246, 0.36);
 }
+
+.field-invalid {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
+}
+
+.field-error {
+  display: block;
+  margin: 6px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+  line-height: 1.35;
+}

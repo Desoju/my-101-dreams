@@ -19,6 +19,7 @@ const FILES_TO_CACHE = [
   "./js/shared/text.js",
   "./js/shared/dates.js",
   "./js/shared/backup.js",
+  "./js/shared/form-validation.js",
 
   "./js/pwa/pwa-install.js",
   "./js/pwa/pwa-update.js",

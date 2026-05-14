@@ -19,15 +19,29 @@ function setupDreamForm() {
   dreamForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    if (!dreamForm.checkValidity()) {
-      scrollToFirstInvalidField(dreamForm);
-      dreamForm.reportValidity();
+    const dreamNameInput = document.getElementById("dreamName");
+
+    clearFieldError(dreamNameInput);
+    dreamNameInput.classList.remove("field-invalid");
+
+    if (!dreamNameInput.value.trim()) {
+      dreamNameInput.classList.add("field-invalid");
+
+      showFieldError(dreamNameInput, "Název snu je povinný.");
+
+      scrollToElement(dreamNameInput, {
+        block: "center",
+      });
+
+      dreamNameInput.focus();
+
       return;
     }
 
     const dreams = getDreams();
 
     const selectedPriority = document.getElementById("dreamPriority").value;
+
     const selectedStatus = document.getElementById("dreamStatus").value;
 
     const finalPriority =
@@ -41,14 +55,24 @@ function setupDreamForm() {
       return;
     }
 
-    const dreamName = document.getElementById("dreamName").value.trim();
+    const dreamName = dreamNameInput.value.trim();
 
     if (dreamExistsByName(dreams, dreamName)) {
-      showToast("Sen s tímto názvem už existuje.", "error");
+      dreamNameInput.classList.add("field-invalid");
+
+      showFieldError(dreamNameInput, "Sen s tímto názvem už existuje.");
+
+      scrollToElement(dreamNameInput, {
+        block: "center",
+      });
+
+      dreamNameInput.focus();
+
       return;
     }
 
     const dreamDate = document.getElementById("dreamDate").value;
+
     const subgoals = collectSubgoals();
 
     if (dreamDate) {
@@ -61,6 +85,7 @@ function setupDreamForm() {
           "Deadline kroku nemůže být později než hlavní deadline snu.",
           "error",
         );
+
         return;
       }
     }
@@ -69,11 +94,17 @@ function setupDreamForm() {
       id: Date.now(),
       name: dreamName,
       description: document.getElementById("dreamDescription").value,
+
       pinterestBoardUrl: document.getElementById("dreamPinterestBoard").value,
+
       category: document.getElementById("dreamCategory").value,
+
       priority: finalPriority,
+
       completionDate: dreamDate,
+
       status: document.getElementById("dreamStatus").value,
+
       subgoals: subgoals,
     };
 
