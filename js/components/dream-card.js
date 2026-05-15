@@ -90,9 +90,13 @@ function createDreamCard(dream) {
 
   const pinButton = dreamCard.querySelector(".pin-dream-button");
 
+  pinButton.setAttribute(
+    "aria-label",
+    dream.pinned ? "Odepnout sen" : "Připnout sen",
+  );
+
   pinButton.addEventListener("click", function (event) {
     event.stopPropagation();
-
     toggleDreamPin(dream.id);
   });
 

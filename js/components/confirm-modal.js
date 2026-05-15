@@ -30,17 +30,21 @@ function showConfirm(options) {
       modal = document.createElement("div");
       modal.id = "confirmModal";
       modal.className = "confirm-modal-overlay";
+      modal.setAttribute("role", "dialog");
+      modal.setAttribute("aria-modal", "true");
+      modal.setAttribute("aria-labelledby", "confirmModalTitle");
+      modal.setAttribute("aria-describedby", "confirmModalMessage");
 
       modal.innerHTML = `
         <div class="confirm-modal">
-          <h2 id="confirmModalTitle" class="confirm-modal-title"></h2>
+          <h2 id="confirmModalTitle"></h2>
           <p id="confirmModalMessage"></p>
 
           <div class="confirm-modal-actions">
             <button
               type="button"
               id="confirmModalCancelButton"
-              class="button-soft"
+              class="button-secondary"
             >
               Zrušit
             </button>
@@ -63,10 +67,10 @@ function showConfirm(options) {
     const messageElement = document.getElementById("confirmModalMessage");
     const confirmButton = document.getElementById("confirmModalConfirmButton");
     const cancelButton = document.getElementById("confirmModalCancelButton");
+    const previouslyFocusedElement = document.activeElement;
 
     titleElement.textContent = config.title;
     titleElement.style.display = config.title ? "block" : "none";
-
     messageElement.textContent = config.message;
 
     confirmButton.textContent = config.confirmText;
@@ -82,68 +86,30 @@ function showConfirm(options) {
       config.variant === "danger" ? "button-danger" : "button-primary";
 
     modal.classList.add("confirm-modal-visible");
+    document.body.classList.add("modal-open");
+
     if (config.variant === "danger") {
       cancelButton.focus();
     } else {
       confirmButton.focus();
     }
 
-    document.body.classList.add("modal-open");
-
-    function handleEscape(event) {
-      if (event.key === "Escape") {
-        cleanup(false);
-      }
-    }
-
-    function handleTabKey(event) {
-      if (event.key !== "Tab") {
-        return;
-      }
-
-      const focusableElements = modal.querySelectorAll("button");
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-
-      if (event.shiftKey && document.activeElement === firstElement) {
-        event.preventDefault();
-        lastElement.focus();
-      }
-
-      if (!event.shiftKey && document.activeElement === lastElement) {
-        event.preventDefault();
-        firstElement.focus();
-      }
-    }
-
-    function handleOverlayClick(event) {
-      if (event.target === modal) {
-        cleanup(false);
-      }
-    }
-
-    document.addEventListener("keydown", handleEscape);
-
-    document.addEventListener("keydown", handleTabKey);
-
-    modal.addEventListener("click", handleOverlayClick);
-
     function cleanup(result) {
       modal.classList.remove("confirm-modal-visible");
 
       confirmButton.removeEventListener("click", handleConfirm);
       cancelButton.removeEventListener("click", handleCancel);
-
-      document.removeEventListener("keydown", handleEscape);
-
-      document.removeEventListener("keydown", handleTabKey);
+      modal.removeEventListener("click", handleOverlayClick);
+      document.removeEventListener("keydown", handleKeydown);
 
       document.body.classList.remove("modal-open");
 
-      modal.removeEventListener("click", handleOverlayClick);
-
       confirmButton.disabled = false;
       cancelButton.disabled = false;
+
+      if (previouslyFocusedElement && previouslyFocusedElement.focus) {
+        previouslyFocusedElement.focus();
+      }
 
       resolve(result);
     }
@@ -158,7 +124,47 @@ function showConfirm(options) {
       cleanup(false);
     }
 
+    function handleOverlayClick(event) {
+      if (event.target === modal) {
+        cleanup(false);
+      }
+    }
+
+    function handleKeydown(event) {
+      if (event.key === "Escape") {
+        cleanup(false);
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusableElements = Array.from(
+        modal.querySelectorAll("button:not([style*='display: none'])"),
+      );
+
+      if (focusableElements.length === 0) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      }
+
+      if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    }
+
     confirmButton.addEventListener("click", handleConfirm);
     cancelButton.addEventListener("click", handleCancel);
+    modal.addEventListener("click", handleOverlayClick);
+    document.addEventListener("keydown", handleKeydown);
   });
 }
