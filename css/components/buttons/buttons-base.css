@@ -99,3 +99,8 @@ button,
 .button-soft {
   min-height: 44px;
 }
+
+.button-secondary,
+.home-action-button.button-secondary {
+  color: #006b7a;
+}
