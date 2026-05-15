@@ -6,10 +6,6 @@ if (viewMode) {
   const dream = findDreamById(dreams, dreamId);
   const editMode = document.getElementById("editMode");
 
-  scrollToElement(editMode, {
-    block: "start",
-  });
-
   if (dream) {
     normalizeDreamSubgoals(dream, dreams);
 

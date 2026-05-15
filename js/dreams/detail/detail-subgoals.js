@@ -163,7 +163,11 @@ function createSubgoalEditField(
         subgoalDateInput.value &&
         subgoalDateInput.value > dreamDateInput.value
       ) {
-        alert("Deadline kroku nemůže být později než hlavní deadline snu.");
+        showToast(
+          "Deadline kroku nemůže být později než hlavní deadline snu.",
+          "error",
+        );
+
         subgoalDateInput.value = "";
       }
     });

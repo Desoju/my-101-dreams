@@ -1,84 +1,13 @@
 function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
-  let isEditDirty = false;
-  let autosaveTimeout;
+  const autosave = createDreamEditAutosave(dream, dreams);
 
-  const autosaveStatus = document.getElementById("editAutosaveStatus");
-
-  function setAutosaveStatus(message) {
-    if (!autosaveStatus) {
-      return;
-    }
-
-    autosaveStatus.textContent = message;
-  }
-
-  function clearAutosaveStatusLater() {
-    setTimeout(function () {
-      setAutosaveStatus("");
-    }, 1500);
-  }
-
-  function autosaveDreamEdit() {
-    clearTimeout(autosaveTimeout);
-
-    setAutosaveStatus("Ukládám…");
-
-    autosaveTimeout = setTimeout(function () {
-      if (!isEditDirty) {
-        setAutosaveStatus("");
-        return;
-      }
-
-      const wasSaved = saveDreamEditChanges(dream);
-
-      if (!wasSaved) {
-        setAutosaveStatus("");
-        return;
-      }
-
-      saveDreams(dreams);
-      renderDreamViewMode(dream, dreams);
-
-      isEditDirty = false;
-      setAutosaveStatus("Uloženo");
-      clearAutosaveStatusLater();
-    }, 700);
-  }
-
-  const backLink = document.querySelector(".back-link");
-
-  if (backLink) {
-    backLink.addEventListener("click", async function (event) {
-      if (!isEditDirty) {
-        return;
-      }
-
-      event.preventDefault();
-
-      const shouldStay = await showConfirm({
-        title: "Pokračovat v úpravách?",
-        message:
-          "Máš rozepsané změny. Pokud odejdeš, můžeš přijít o poslední neupravené změny.",
-        confirmText: "Pokračovat v úpravách",
-        cancelText: "Odejít",
-        variant: "primary",
-      });
-
-      if (shouldStay) {
-        return;
-      }
-
-      isEditDirty = false;
-      window.location.href = backLink.href;
-    });
-  }
+  setupBackLinkGuard(autosave);
 
   document
     .getElementById("editDreamButton")
     .addEventListener("click", function () {
       fillDreamEditMode(dream);
-      isEditDirty = false;
-      setAutosaveStatus("");
+      autosave.markClean();
       viewMode.style.display = "none";
       editMode.style.display = "grid";
     });
@@ -86,25 +15,12 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
   document
     .getElementById("cancelEditButton")
     .addEventListener("click", async function () {
-      clearTimeout(autosaveTimeout);
+      const canLeaveEdit = await confirmCancelEdit(autosave);
 
-      if (isEditDirty) {
-        const shouldLeaveEdit = await showConfirm({
-          title: "Pokračovat v úpravách?",
-          message:
-            "Máš rozepsané změny. Pokud odejdeš, můžeš přijít o poslední neupravené změny.",
-          confirmText: "Pokračovat v úpravách",
-          cancelText: "Zahodit změny",
-          variant: "primary",
-        });
-
-        if (shouldLeaveEdit) {
-          return;
-        }
+      if (!canLeaveEdit) {
+        return;
       }
 
-      isEditDirty = false;
-      setAutosaveStatus("");
       viewMode.style.display = "block";
       editMode.style.display = "none";
     });
@@ -115,44 +31,38 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
       const editSubgoalsContainer = document.getElementById(
         "editSubgoalsContainer",
       );
+
       const subgoalForm = createSubgoalEditField();
 
       editSubgoalsContainer.appendChild(subgoalForm);
+
       scrollToElement(subgoalForm, {
         block: "center",
       });
 
-      isEditDirty = true;
-      autosaveDreamEdit();
+      autosave.markDirty();
+      autosave.runAutosave();
     });
 
   editMode.addEventListener("input", function () {
-    isEditDirty = true;
-    autosaveDreamEdit();
+    autosave.markDirty();
+    autosave.runAutosave();
   });
 
   editMode.addEventListener("change", function () {
-    isEditDirty = true;
-    autosaveDreamEdit();
+    autosave.markDirty();
+    autosave.runAutosave();
   });
 
   document
     .getElementById("saveDreamButton")
     .addEventListener("click", function () {
-      clearTimeout(autosaveTimeout);
-
-      const wasSaved = saveDreamEditChanges(dream);
+      const wasSaved = autosave.saveNow();
 
       if (!wasSaved) {
-        setAutosaveStatus("Neuloženo");
         return;
       }
 
-      saveDreams(dreams);
-      renderDreamViewMode(dream, dreams);
-
-      isEditDirty = false;
-      setAutosaveStatus("");
       viewMode.style.display = "block";
       editMode.style.display = "none";
     });
@@ -160,7 +70,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
   document
     .getElementById("deleteDreamButton")
     .addEventListener("click", function () {
-      clearTimeout(autosaveTimeout);
+      autosave.cancelPendingAutosave();
       deleteDream(dreams, dreamId);
     });
 
@@ -182,6 +92,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
     .getElementById("pinDreamButton")
     .addEventListener("click", function (event) {
       event.preventDefault();
+
       toggleDreamPin(dream, dreams);
       renderDreamViewMode(dream, dreams);
     });
@@ -194,10 +105,12 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
       }
 
       fillDreamEditMode(dream);
-      isEditDirty = false;
-      setAutosaveStatus("");
+
+      autosave.markClean();
+
       viewMode.style.display = "none";
       editMode.style.display = "grid";
+
       document.getElementById("dreamCompletionDateInput").focus();
     });
 

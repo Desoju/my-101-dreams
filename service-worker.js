@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v1.2.1";
+const CACHE_NAME = "my-101-dreams-v1.2.2";
 
 const FILES_TO_CACHE = [
   "./",
@@ -59,6 +59,8 @@ const FILES_TO_CACHE = [
   "./js/dreams/detail/detail-data.js",
   "./js/dreams/detail/detail-render.js",
   "./js/dreams/detail/detail-actions.js",
+  "./js/dreams/detail/detail-autosave.js",
+  "./js/dreams/detail/detail-navigation.js",
   "./js/dreams/detail/detail-events.js",
   "./js/dreams/detail/detail.js",
 
