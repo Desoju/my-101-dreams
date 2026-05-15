@@ -100,7 +100,6 @@ button,
   min-height: 44px;
 }
 
-.button-secondary,
-.home-action-button.button-secondary {
-  color: #006b7a;
+#importDataButton.button-secondary {
+  color: #004a55;
 }
