@@ -6,14 +6,14 @@ function toggleDreamPin(dreamId) {
   });
 
   if (!selectedDream) {
-    return;
+    return null;
   }
 
   selectedDream.pinned = !selectedDream.pinned;
 
   saveDreams(dreams);
 
-  window.location.reload();
+  return selectedDream.pinned;
 }
 
 function openDreamDetail(dreamId) {
@@ -26,8 +26,13 @@ function createDreamCard(dream) {
   const dreamCard = document.createElement("div");
 
   dreamCard.classList.add("dream-card");
-
   dreamCard.dataset.id = dream.id;
+  dreamCard.tabIndex = 0;
+  dreamCard.setAttribute("role", "link");
+  dreamCard.setAttribute(
+    "aria-label",
+    `Otevřít detail snu: ${dream.name || "Bez názvu"}`,
+  );
 
   const displayPriority = dream.priority || "C";
 
@@ -41,7 +46,9 @@ function createDreamCard(dream) {
         type="button"
         class="pin-dream-button"
       >
-        ${dream.pinned ? "📌" : "📍"}
+        <span aria-hidden="true">
+          ${dream.pinned ? "📌" : "📍"}
+        </span>
       </button>
 
       <h3>${dream.name || "Bez názvu"}</h3>
@@ -71,6 +78,7 @@ function createDreamCard(dream) {
         </span>
       </div>
     </div>
+
     <p class="dream-card-date">
       ${getRemainingTime(dream.completionDate)}
     </p>
@@ -78,6 +86,11 @@ function createDreamCard(dream) {
     <div class="progress-bar">
       <div
         class="progress-fill"
+        role="progressbar"
+        aria-label="Postup plnění snu"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="${progress.percent}"
         style="width: ${progress.percent}%"
       ></div>
     </div>
@@ -97,11 +110,40 @@ function createDreamCard(dream) {
 
   pinButton.addEventListener("click", function (event) {
     event.stopPropagation();
-    toggleDreamPin(dream.id);
+
+    const isPinned = toggleDreamPin(dream.id);
+
+    if (isPinned === null) {
+      return;
+    }
+
+    dream.pinned = isPinned;
+
+    pinButton.setAttribute(
+      "aria-label",
+      isPinned ? "Odepnout sen" : "Připnout sen",
+    );
+
+    pinButton.innerHTML = `
+    <span aria-hidden="true">
+      ${isPinned ? "📌" : "📍"}
+    </span>
+  `;
   });
 
   dreamCard.addEventListener("click", function () {
     openDreamDetail(dream.id);
+  });
+
+  dreamCard.addEventListener("keydown", function (event) {
+    if (event.target === pinButton) {
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openDreamDetail(dream.id);
+    }
   });
 
   return dreamCard;

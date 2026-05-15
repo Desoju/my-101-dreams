@@ -14,7 +14,7 @@ async function showOnboarding() {
     message:
       "Zapisuj si sny, cíle a zážitky, které chceš v životě splnit. Rozděl si je na menší kroky, sleduj progress a buduj si vlastní dream list.",
     confirmText: "Začít",
-    cancelText: "",
+    cancelText: null,
     variant: "primary",
   });
 

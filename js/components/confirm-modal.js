@@ -77,12 +77,17 @@ function showConfirm(options) {
 
     confirmButton.textContent = config.confirmText;
 
-    if (config.cancelText) {
+    if (
+      config.cancelText !== null &&
+      config.cancelText !== undefined &&
+      config.cancelText !== ""
+    ) {
       cancelButton.hidden = false;
       cancelButton.style.display = "inline-flex";
       cancelButton.textContent = config.cancelText;
     } else {
       cancelButton.hidden = true;
+      cancelButton.style.display = "none";
     }
 
     confirmButton.className =
@@ -91,7 +96,10 @@ function showConfirm(options) {
     modal.classList.add("confirm-modal-visible");
     document.body.classList.add("modal-open");
 
-    if (config.variant === "danger") {
+    if (
+      config.variant === "danger" &&
+      !cancelButton.hidden
+    ) {
       cancelButton.focus();
     } else {
       confirmButton.focus();

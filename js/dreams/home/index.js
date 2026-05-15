@@ -46,6 +46,7 @@ if (dreamList) {
         card.classList.remove("stat-card-active");
       });
 
+      updateStatCardAriaPressed();
       updateHomeStatsVisibility();
       renderDreams();
     });

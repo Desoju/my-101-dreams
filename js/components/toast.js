@@ -18,8 +18,12 @@ function showToast(message, type = "info") {
     info: "i",
   };
 
+  toast.setAttribute("role", type === "error" ? "alert" : "status");
+  toast.setAttribute("aria-live", type === "error" ? "assertive" : "polite");
+  toast.setAttribute("aria-atomic", "true");
+
   toast.innerHTML = `
-    <span class="toast-icon">
+    <span class="toast-icon" aria-hidden="true">
       ${toastIcons[type] || "i"}
     </span>
 
