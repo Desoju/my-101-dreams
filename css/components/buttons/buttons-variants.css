@@ -29,7 +29,7 @@
   border: var(--border-primary-light);
 
   background: var(--primary-soft);
-  color: var(--primary);
+  color: #004a55;
 }
 
 .button-secondary {

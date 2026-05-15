@@ -99,7 +99,3 @@ button,
 .button-soft {
   min-height: 44px;
 }
-
-#importDataButton.button-secondary {
-  color: #004a55;
-}
