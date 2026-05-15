@@ -52,7 +52,7 @@
   overflow-y: auto;
 
   margin-bottom: var(--space-5);
-  padding: var(--space-4-5);
+  padding: var(--space-card-padding);
 
   border: var(--border-primary-light);
   border-radius: var(--radius-card);

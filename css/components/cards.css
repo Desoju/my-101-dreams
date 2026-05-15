@@ -1,7 +1,7 @@
 .dream-card {
   display: block;
 
-  padding: var(--space-4-5);
+  padding: var(--space-card-padding);
 
   border: var(--border-primary-light);
   border-radius: var(--radius-card);
@@ -69,4 +69,71 @@
   cursor: grabbing;
 
   transform: var(--scale-card-press);
+}
+
+.dream-card-skeleton {
+  cursor: default;
+  pointer-events: none;
+}
+
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.skeleton-row-top {
+  margin-bottom: var(--space-3);
+}
+
+.skeleton-line,
+.skeleton-pill {
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--surface-soft),
+    var(--surface),
+    var(--surface-soft)
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s ease-in-out infinite;
+}
+
+.skeleton-title {
+  width: 62%;
+  height: 1.25rem;
+}
+
+.skeleton-pill {
+  width: 3rem;
+  height: 1.5rem;
+}
+
+.skeleton-date {
+  width: 45%;
+  height: 0.85rem;
+  margin-bottom: var(--space-4);
+}
+
+.skeleton-progress {
+  width: 100%;
+  height: 0.7rem;
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-small {
+  width: 35%;
+  height: 0.75rem;
+}
+
+@keyframes skeleton-loading {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
 }

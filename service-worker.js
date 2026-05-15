@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v1.1.5";
+const CACHE_NAME = "my-101-dreams-v1.2.0";
 
 const FILES_TO_CACHE = [
   "./",
@@ -92,6 +92,8 @@ const FILES_TO_CACHE = [
   "./css/components/toast.css",
   "./css/components/confirm-modal.css",
   "./css/components/empty-state.css",
+  "./css/components/animations.css",
+  "./css/components/pinterest-preview.css",
 
   "./css/pages/home.css",
   "./css/pages/add-dream.css",

@@ -10,6 +10,11 @@
   box-shadow: var(--shadow-card);
 }
 
+.detail-edit-card {
+  gap: var(--space-form-group);
+  padding: var(--space-card-padding);
+}
+
 .detail-muted-text {
   margin: 0 0 var(--space-2);
 

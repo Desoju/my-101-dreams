@@ -1,5 +1,5 @@
 .categories-header {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-section);
 
   text-align: center;
 }
@@ -22,8 +22,8 @@
 }
 
 .categories-card {
-  margin-bottom: var(--space-6);
-  padding: var(--space-5);
+  margin-bottom: var(--space-section);
+  padding: var(--space-card-padding);
 
   border: var(--border-primary-light);
   border-radius: var(--radius-card);
@@ -52,7 +52,7 @@
   justify-content: space-between;
   gap: var(--space-3);
 
-  padding: var(--space-4);
+  padding: var(--space-card-padding);
 
   border: var(--border-primary-light);
   border-radius: var(--radius-item);
@@ -93,7 +93,7 @@
 }
 
 .empty-categories {
-  padding: var(--space-4-5);
+  padding: var(--space-card-padding);
 
   border: var(--border-primary-light);
   border-radius: var(--radius-button);

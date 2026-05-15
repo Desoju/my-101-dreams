@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
 
-  padding: var(--space-6);
+  padding: var(--space-modal-padding);
 
   background: var(--overlay-scrim);
 
@@ -35,7 +35,7 @@
 .confirm-modal {
   width: min(100%, var(--modal-width));
 
-  padding: var(--space-6);
+  padding: var(--space-modal-padding);
 
   border-radius: var(--radius-card);
 
@@ -74,7 +74,7 @@
 .confirm-modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: var(--space-3);
+  gap: var(--space-button-group);
 
   margin-top: var(--space-6);
 }

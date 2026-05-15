@@ -1,5 +1,5 @@
 .empty-state {
-  padding: 3rem var(--space-6);
+  padding: var(--space-section);
 
   border-radius: var(--radius-card);
 

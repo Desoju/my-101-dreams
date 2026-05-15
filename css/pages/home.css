@@ -41,9 +41,9 @@
   display: grid;
   grid-template-columns: 1fr;
 
-  gap: var(--space-2-5);
+  gap: var(--space-button-group);
 
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-section);
 }
 
 .home-action-button {

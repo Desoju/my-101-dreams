@@ -39,3 +39,63 @@ button:active,
 .button-success:active {
   transform: var(--scale-press);
 }
+
+/* Native-like tap feedback */
+
+button,
+.btn,
+.dream-card,
+.filter-chip,
+.priority-chip,
+.status-chip,
+.category-chip,
+.icon-button {
+  transition:
+    transform 0.14s ease,
+    opacity 0.14s ease,
+    background-color 0.14s ease,
+    box-shadow 0.14s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Press effect */
+
+button:active,
+.btn:active,
+.filter-chip:active,
+.priority-chip:active,
+.status-chip:active,
+.category-chip:active,
+.icon-button:active {
+  transform: scale(0.97);
+}
+
+/* Cards feel touchable */
+
+.dream-card:active {
+  transform: scale(0.985);
+}
+
+/* Softer interaction */
+
+button:active,
+.btn:active {
+  opacity: 0.9;
+}
+
+/* Better mobile touch behavior */
+
+@media (hover: none) {
+  button:hover,
+  .btn:hover,
+  .dream-card:hover {
+    transform: none;
+  }
+}
+
+button,
+.button-primary,
+.button-secondary,
+.button-soft {
+  min-height: 44px;
+}

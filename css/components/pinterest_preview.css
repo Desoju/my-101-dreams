@@ -1,0 +1,52 @@
+.pinterest-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+
+  margin-top: var(--space-4);
+  padding: var(--space-card-padding);
+
+  border: var(--border-primary-light);
+  border-radius: var(--radius-item);
+
+  background: var(--surface);
+  color: var(--text);
+
+  text-decoration: none;
+
+  box-shadow: var(--shadow-soft);
+
+  transition: var(--transition-interactive);
+}
+
+.pinterest-preview:hover {
+  background: var(--primary-soft);
+}
+
+.pinterest-preview-content {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.pinterest-preview-label {
+  color: var(--text-soft);
+
+  font-size: var(--font-size-xs-plus);
+}
+
+.pinterest-preview-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.pinterest-preview-icon {
+  flex-shrink: 0;
+
+  color: #e60023;
+
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+
+  line-height: 1;
+}

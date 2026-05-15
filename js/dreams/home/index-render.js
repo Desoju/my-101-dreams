@@ -1,6 +1,6 @@
-function renderDreamList(dreamList, dreams, filters) {
-  dreamList.innerHTML = "";
+let wasEmptyStateVisible = false;
 
+function renderDreamList(dreamList, dreams, filters) {
   const filteredDreams = getFilteredDreams(dreams, filters);
 
   const floatingAddButton = document.querySelector(".floating-add-button");
@@ -9,23 +9,32 @@ function renderDreamList(dreamList, dreams, filters) {
   }
 
   if (filteredDreams.length === 0) {
-    const emptyState = dreamList.appendChild(
-      createEmptyState(
-        "Zatím tu nemáš žádné sny",
-        "Začni prvním snem, který si chceš splnit.",
-        {
-          label: "Přidat první sen",
-          href: "pages/add-dream.html",
-        },
-      ),
+    if (wasEmptyStateVisible) {
+      return;
+    }
+
+    dreamList.innerHTML = "";
+
+    const emptyState = createEmptyState(
+      "Zatím tu nemáš žádné sny",
+      "Začni prvním snem, který si chceš splnit.",
+      {
+        label: "Přidat první sen",
+        href: "pages/add-dream.html",
+      },
     );
 
+    emptyState.classList.add("empty-state-animated");
+    wasEmptyStateVisible = true;
+    dreamList.appendChild(emptyState);
     return;
   }
 
+  wasEmptyStateVisible = false;
+  dreamList.innerHTML = "";
+
   filteredDreams.forEach(function (dream) {
     const dreamCard = createDreamCard(dream);
-
     dreamList.appendChild(dreamCard);
   });
 }
