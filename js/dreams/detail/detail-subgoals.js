@@ -38,7 +38,7 @@ function renderSubgoals(dream, dreams, renderViewMode) {
     document
       .getElementById("createFirstSubgoalButton")
       .addEventListener("click", function () {
-        fillDreamEditMode(dream);
+        renderDreamEditForm(dream);
 
         const editSubgoalsContainer = document.getElementById(
           "editSubgoalsContainer",

@@ -1,4 +1,4 @@
-function updateHomeStats(dreams) {
+function renderHomeStats(dreams) {
   const completedDreamsCount = countDreamsByStatus(dreams, "dream_completed");
 
   const visibleDreams = dreams.filter(function (dream) {

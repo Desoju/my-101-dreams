@@ -16,10 +16,10 @@ if (dreamList) {
       priorities: [],
     };
 
-    updateHomeStats(dreams);
-    setupStatCardFilters(currentFilters, renderDreams);
+    renderHomeStats(dreams);
+    setupStatCardFilters(currentFilters, refreshDreamList);
 
-    function renderDreams() {
+    function refreshDreamList() {
       renderDreamList(dreamList, dreams, currentFilters);
     }
 
@@ -36,9 +36,9 @@ if (dreamList) {
 
       updateStatCardAriaPressed();
       updateHomeStatsVisibility();
-      renderDreams();
+      refreshDreamList();
     });
 
-    renderDreams();
+    refreshDreamList();
   });
 }

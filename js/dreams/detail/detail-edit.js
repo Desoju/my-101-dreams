@@ -1,5 +1,5 @@
-function showDreamEditMode(dream, autosave, viewMode, editMode) {
-  fillDreamEditMode(dream);
+function enterDreamEditMode(dream, autosave, viewMode, editMode) {
+  renderDreamEditForm(dream);
   autosave.markClean();
 
   viewMode.style.display = "none";
@@ -25,7 +25,7 @@ function updateEditSubgoalDateLimits() {
   });
 }
 
-function fillDreamEditMode(dream) {
+function renderDreamEditForm(dream) {
   document.getElementById("dreamTitleInput").value = dream.name || "";
 
   document.getElementById("dreamDescriptionInput").value =

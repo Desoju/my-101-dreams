@@ -6,7 +6,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
   document
     .getElementById("editDreamButton")
     .addEventListener("click", function () {
-      showDreamEditMode(dream, autosave, viewMode, editMode);
+      enterDreamEditMode(dream, autosave, viewMode, editMode);
     });
 
   document
@@ -102,7 +102,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
         return;
       }
 
-      showDreamEditMode(dream, autosave, viewMode, editMode);
+      enterDreamEditMode(dream, autosave, viewMode, editMode);
 
       document.getElementById("dreamCompletionDateInput").focus();
     });
