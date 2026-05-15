@@ -30,11 +30,16 @@ function exportAppData() {
   downloadLink.click();
 
   URL.revokeObjectURL(downloadUrl);
+
+  if (typeof showToast === "function") {
+    showToast("Export byl stažen.", "success");
+  }
 }
 
 function isValidImportedData(importedData) {
   return (
     importedData &&
+    typeof importedData === "object" &&
     Array.isArray(importedData.dreams) &&
     Array.isArray(importedData.customCategories)
   );
@@ -135,7 +140,10 @@ async function importAppData(file) {
       saveDreams(mergedDreams.items);
       saveCustomCategories(mergedCategories.items);
 
-      sessionStorage.setItem("postImportToast", "Import hotový.");
+      sessionStorage.setItem(
+        "postImportToast",
+        `Import hotový: ${mergedDreams.added} nových, ${mergedDreams.updated} aktualizovaných.`,
+      );
 
       window.location.reload();
     } catch {
@@ -225,6 +233,7 @@ function showBackupReminder() {
 function setupBackupButtons() {
   const exportButton = document.getElementById("exportDataButton");
   const importInput = document.getElementById("importDataInput");
+  const importButton = document.getElementById("importDataButton");
   const restoreButton = document.getElementById("restoreBackupButton");
 
   if (restoreButton) {
@@ -237,6 +246,12 @@ function setupBackupButtons() {
 
   if (exportButton) {
     exportButton.addEventListener("click", exportAppData);
+  }
+
+  if (importButton && importInput) {
+    importButton.addEventListener("click", function () {
+      importInput.click();
+    });
   }
 
   if (importInput) {
@@ -261,11 +276,12 @@ function showPostImportToast() {
     return;
   }
 
-  if (typeof showToast === "function") {
-    showToast(postImportToast, "success");
-  }
-
-  sessionStorage.removeItem("postImportToast");
+  setTimeout(function () {
+    if (typeof showToast === "function") {
+      showToast(postImportToast, "success");
+      sessionStorage.removeItem("postImportToast");
+    }
+  }, 300);
 }
 
 setupBackupButtons();
