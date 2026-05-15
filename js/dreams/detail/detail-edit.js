@@ -1,3 +1,11 @@
+function showDreamEditMode(dream, autosave, viewMode, editMode) {
+  fillDreamEditMode(dream);
+  autosave.markClean();
+
+  viewMode.style.display = "none";
+  editMode.style.display = "grid";
+}
+
 function updateEditSubgoalDateLimits() {
   const dreamDateInput = document.getElementById("dreamCompletionDateInput");
 

@@ -1,18 +1,6 @@
 const dreamList = document.getElementById("dreamList");
-const homeStats = document.querySelector(".home-stats");
-const filtersPanel = document.getElementById("filtersPanel");
 
-function updateHomeStatsVisibility() {
-  if (!homeStats || !filtersPanel) {
-    return;
-  }
-
-  const isFilterOpen = !filtersPanel.classList.contains("hidden");
-  homeStats.classList.toggle("home-stats-hidden", isFilterOpen);
-}
-
-window.addEventListener("resize", updateHomeStatsVisibility);
-updateHomeStatsVisibility();
+setupHomeLayout();
 
 if (dreamList) {
   renderDreamSkeletonList(dreamList);

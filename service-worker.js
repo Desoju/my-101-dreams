@@ -44,6 +44,7 @@ const FILES_TO_CACHE = [
   "./js/dreams/home/index-stats.js",
   "./js/dreams/home/index-render.js",
   "./js/dreams/home/index-stat-filters.js",
+  "./js/dreams/home/index-layout.js",
   "./js/dreams/home/index.js",
 
   "./js/dreams/add/add-ui.js",

@@ -6,10 +6,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
   document
     .getElementById("editDreamButton")
     .addEventListener("click", function () {
-      fillDreamEditMode(dream);
-      autosave.markClean();
-      viewMode.style.display = "none";
-      editMode.style.display = "grid";
+      showDreamEditMode(dream, autosave, viewMode, editMode);
     });
 
   document
@@ -71,6 +68,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
     .getElementById("deleteDreamButton")
     .addEventListener("click", function () {
       autosave.cancelPendingAutosave();
+
       deleteDream(dreams, dreamId);
     });
 
@@ -104,12 +102,7 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
         return;
       }
 
-      fillDreamEditMode(dream);
-
-      autosave.markClean();
-
-      viewMode.style.display = "none";
-      editMode.style.display = "grid";
+      showDreamEditMode(dream, autosave, viewMode, editMode);
 
       document.getElementById("dreamCompletionDateInput").focus();
     });
