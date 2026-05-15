@@ -41,17 +41,17 @@ function setupDreamForm() {
     const dreams = getDreams();
 
     const selectedPriority = document.getElementById("dreamPriority").value;
-
     const selectedStatus = document.getElementById("dreamStatus").value;
 
     const finalPriority =
-      selectedStatus === "dream_completed" ||
-      selectedStatus === "dream_not_attractive_anymore"
+      selectedStatus === DREAM_STATUS.COMPLETED ||
+      selectedStatus === DREAM_STATUS.INACTIVE
         ? null
         : selectedPriority;
 
-    if (finalPriority === "A" && !canSetPriorityA(dreams)) {
+    if (finalPriority === DREAM_PRIORITY.A && !canSetPriorityA(dreams)) {
       showToast("Priorita A je omezená na 10 snů.", "error");
+
       return;
     }
 
@@ -72,7 +72,6 @@ function setupDreamForm() {
     }
 
     const dreamDate = document.getElementById("dreamDate").value;
-
     const subgoals = collectSubgoals();
 
     if (dreamDate) {
@@ -94,17 +93,11 @@ function setupDreamForm() {
       id: Date.now(),
       name: dreamName,
       description: document.getElementById("dreamDescription").value,
-
       pinterestBoardUrl: document.getElementById("dreamPinterestBoard").value,
-
       category: document.getElementById("dreamCategory").value,
-
       priority: finalPriority,
-
       completionDate: dreamDate,
-
-      status: document.getElementById("dreamStatus").value,
-
+      status: selectedStatus,
       subgoals: subgoals,
     };
 

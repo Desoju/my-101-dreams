@@ -34,13 +34,14 @@ function fillDreamEditMode(dream) {
   document.getElementById("dreamPinterestBoardInput").value =
     dream.pinterestBoardUrl || "";
 
-  document.getElementById("dreamPriorityInput").value = dream.priority || "C";
+  document.getElementById("dreamPriorityInput").value =
+    dream.priority || DREAM_PRIORITY.C;
 
   document.getElementById("dreamCompletionDateInput").value =
     dream.completionDate || "";
 
   document.getElementById("dreamStatusInput").value =
-    dream.status || "dream_active";
+    dream.status || DREAM_STATUS.ACTIVE;
 
   fillCategorySelect(
     document.getElementById("dreamCategoryInput"),
@@ -82,6 +83,7 @@ function saveDreamEditChanges(dream) {
 
   if (!dreamTitleInput.value.trim()) {
     dreamTitleInput.classList.add("field-invalid");
+
     showFieldError(dreamTitleInput, "Název snu je povinný.");
 
     scrollToElement(dreamTitleInput, {
@@ -95,13 +97,18 @@ function saveDreamEditChanges(dream) {
 
   const newDreamName = dreamTitleInput.value.trim();
 
-  if (selectedPriority === "A" && !canSetPriorityA(dreams, dream.id)) {
+  if (
+    selectedPriority === DREAM_PRIORITY.A &&
+    !canSetPriorityA(dreams, dream.id)
+  ) {
     showToast("Priorita A je omezená na 10 snů.", "error");
+
     return false;
   }
 
   if (dreamExistsByName(dreams, newDreamName, dream.id)) {
     dreamTitleInput.classList.add("field-invalid");
+
     showFieldError(dreamTitleInput, "Sen s tímto názvem už existuje.");
 
     scrollToElement(dreamTitleInput, {
@@ -131,28 +138,31 @@ function saveDreamEditChanges(dream) {
         "Deadline kroku nemůže být později než hlavní deadline snu.",
         "error",
       );
+
       return false;
     }
   }
 
   dream.name = newDreamName;
   dream.description = document.getElementById("dreamDescriptionInput").value;
+
   dream.pinterestBoardUrl = document.getElementById(
     "dreamPinterestBoardInput",
   ).value;
+
   dream.completionDate = dreamCompletionDate;
   dream.status = document.getElementById("dreamStatusInput").value;
 
   if (
-    dream.status === "dream_completed" ||
-    dream.status === "dream_not_attractive_anymore"
+    dream.status === DREAM_STATUS.COMPLETED ||
+    dream.status === DREAM_STATUS.INACTIVE
   ) {
     dream.priority = null;
   } else {
     dream.priority = selectedPriority;
   }
 
-  if (dream.status === "dream_completed") {
+  if (dream.status === DREAM_STATUS.COMPLETED) {
     dream.pinned = false;
 
     editedSubgoals.forEach(function (subgoal) {

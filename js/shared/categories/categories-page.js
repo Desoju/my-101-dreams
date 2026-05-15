@@ -129,6 +129,13 @@ if (categoryForm) {
 
     const newCategoryName = categoryName.value.trim();
 
+    if (!newCategoryName) {
+      showToast("Název kategorie je povinný.", "error");
+      categoryName.focus();
+
+      return;
+    }
+
     if (categoryExists(newCategoryName)) {
       showToast("Kategorie s tímto názvem už existuje.", "error");
 
