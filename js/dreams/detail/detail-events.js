@@ -55,14 +55,21 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
 
       event.preventDefault();
 
-      const shouldLeave = await showConfirm(
-        "Máš neuložené změny.\nOpravdu chceš odejít?",
-      );
+      const shouldStay = await showConfirm({
+        title: "Pokračovat v úpravách?",
+        message:
+          "Máš rozepsané změny. Pokud odejdeš, můžeš přijít o poslední neupravené změny.",
+        confirmText: "Pokračovat v úpravách",
+        cancelText: "Odejít",
+        variant: "primary",
+      });
 
-      if (shouldLeave) {
-        isEditDirty = false;
-        window.location.href = backLink.href;
+      if (shouldStay) {
+        return;
       }
+
+      isEditDirty = false;
+      window.location.href = backLink.href;
     });
   }
 
@@ -82,11 +89,16 @@ function setupDetailEvents(dream, dreams, dreamId, viewMode, editMode) {
       clearTimeout(autosaveTimeout);
 
       if (isEditDirty) {
-        const shouldCancel = await showConfirm(
-          "Máš neuložené změny.\nOpravdu chceš zrušit úpravy?",
-        );
+        const shouldLeaveEdit = await showConfirm({
+          title: "Pokračovat v úpravách?",
+          message:
+            "Máš rozepsané změny. Pokud odejdeš, můžeš přijít o poslední neupravené změny.",
+          confirmText: "Pokračovat v úpravách",
+          cancelText: "Zahodit změny",
+          variant: "primary",
+        });
 
-        if (!shouldCancel) {
+        if (shouldLeaveEdit) {
           return;
         }
       }

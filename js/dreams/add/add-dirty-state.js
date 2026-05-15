@@ -18,7 +18,11 @@ function checkIfDreamFormIsDirty() {
   });
 
   isFormDirty =
-    hasDreamName || hasDescription || hasPinterestBoard || hasDate || hasSubgoal;
+    hasDreamName ||
+    hasDescription ||
+    hasPinterestBoard ||
+    hasDate ||
+    hasSubgoal;
 }
 
 function markDreamFormClean() {
@@ -50,14 +54,21 @@ function setupAddDreamBackLinkProtection() {
 
     event.preventDefault();
 
-    const shouldLeave = await showConfirm(
-      "Máš neuložené změny. Opravdu chceš odejít?",
-    );
+    const shouldStay = await showConfirm({
+      title: "Pokračovat v psaní?",
+      message:
+        "Máš rozepsaný sen. Pokud odejdeš, můžeš přijít o poslední neupravené změny.",
+      confirmText: "Pokračovat v psaní",
+      cancelText: "Odejít",
+      variant: "primary",
+    });
 
-    if (shouldLeave) {
-      markDreamFormClean();
-      window.location.href = backLink.href;
+    if (shouldStay) {
+      return;
     }
+
+    markDreamFormClean();
+    window.location.href = backLink.href;
   });
 }
 

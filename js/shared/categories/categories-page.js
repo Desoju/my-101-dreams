@@ -167,14 +167,21 @@ if (backLink) {
 
     event.preventDefault();
 
-    const shouldLeave = await showConfirm(
-      "Máš neuloženou kategorii. Opravdu chceš odejít?",
-    );
+    const shouldStay = await showConfirm({
+      title: "Pokračovat v úpravách?",
+      message:
+        "Máš rozepsanou kategorii. Pokud odejdeš, můžeš přijít o poslední neupravené změny.",
+      confirmText: "Pokračovat v úpravách",
+      cancelText: "Odejít",
+      variant: "primary",
+    });
 
-    if (shouldLeave) {
-      isCategoryFormDirty = false;
-      window.location.href = backLink.href;
+    if (shouldStay) {
+      return;
     }
+
+    isCategoryFormDirty = false;
+    window.location.href = backLink.href;
   });
 }
 
