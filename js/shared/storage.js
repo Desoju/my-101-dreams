@@ -1,8 +1,7 @@
-const DREAMS_STORAGE_KEY = "dreams";
 const DREAMS_BACKUP_KEYS = [
-  "dreams_backup_1",
-  "dreams_backup_2",
-  "dreams_backup_3",
+  STORAGE_KEYS.DREAMS_BACKUP_1,
+  STORAGE_KEYS.DREAMS_BACKUP_2,
+  STORAGE_KEYS.DREAMS_BACKUP_3,
 ];
 
 function safelyParseDreams(rawValue) {
@@ -20,7 +19,9 @@ function safelyParseDreams(rawValue) {
 }
 
 function getDreams() {
-  const dreams = safelyParseDreams(localStorage.getItem(DREAMS_STORAGE_KEY));
+  const dreams = safelyParseDreams(
+    localStorage.getItem(STORAGE_KEYS.DREAMS),
+  );
 
   if (dreams) {
     return dreams;
@@ -42,18 +43,30 @@ function getDreamsFromBackup() {
 }
 
 function rotateDreamBackups() {
-  const currentDreams = localStorage.getItem(DREAMS_STORAGE_KEY);
+  const currentDreams = localStorage.getItem(STORAGE_KEYS.DREAMS);
 
   if (!currentDreams) {
     return;
   }
 
-  localStorage.setItem(DREAMS_BACKUP_KEYS[2], localStorage.getItem(DREAMS_BACKUP_KEYS[1]) || "");
-  localStorage.setItem(DREAMS_BACKUP_KEYS[1], localStorage.getItem(DREAMS_BACKUP_KEYS[0]) || "");
+  localStorage.setItem(
+    DREAMS_BACKUP_KEYS[2],
+    localStorage.getItem(DREAMS_BACKUP_KEYS[1]) || "",
+  );
+
+  localStorage.setItem(
+    DREAMS_BACKUP_KEYS[1],
+    localStorage.getItem(DREAMS_BACKUP_KEYS[0]) || "",
+  );
+
   localStorage.setItem(DREAMS_BACKUP_KEYS[0], currentDreams);
 }
 
 function saveDreams(dreams) {
   rotateDreamBackups();
-  localStorage.setItem(DREAMS_STORAGE_KEY, JSON.stringify(dreams));
+
+  localStorage.setItem(
+    STORAGE_KEYS.DREAMS,
+    JSON.stringify(dreams),
+  );
 }

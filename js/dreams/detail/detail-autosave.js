@@ -15,7 +15,7 @@ function createDreamEditAutosave(dream, dreams) {
   function clearStatusLater() {
     setTimeout(function () {
       setStatus("");
-    }, 1500);
+    }, TIMING.AUTOSAVE_STATUS_CLEAR_DELAY);
   }
 
   function markDirty() {
@@ -24,6 +24,7 @@ function createDreamEditAutosave(dream, dreams) {
 
   function markClean() {
     isEditDirty = false;
+
     setStatus("");
   }
 
@@ -43,6 +44,7 @@ function createDreamEditAutosave(dream, dreams) {
     autosaveTimeout = setTimeout(function () {
       if (!isEditDirty) {
         setStatus("");
+
         return;
       }
 
@@ -50,6 +52,7 @@ function createDreamEditAutosave(dream, dreams) {
 
       if (!wasSaved) {
         setStatus("");
+
         return;
       }
 
@@ -57,9 +60,10 @@ function createDreamEditAutosave(dream, dreams) {
       renderDreamViewMode(dream, dreams);
 
       isEditDirty = false;
+
       setStatus("Uloženo");
       clearStatusLater();
-    }, 700);
+    }, TIMING.AUTOSAVE_DELAY);
   }
 
   function saveNow() {
@@ -69,6 +73,7 @@ function createDreamEditAutosave(dream, dreams) {
 
     if (!wasSaved) {
       setStatus("Neuloženo");
+
       return false;
     }
 
@@ -76,6 +81,7 @@ function createDreamEditAutosave(dream, dreams) {
     renderDreamViewMode(dream, dreams);
 
     isEditDirty = false;
+
     setStatus("");
 
     return true;

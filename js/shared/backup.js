@@ -1,11 +1,6 @@
-const BACKUP_FORMAT_VERSION = 1;
-const RECOVERY_BACKUP_KEY = "my101dreams_recovery_backup";
-const BACKUP_REMINDER_KEY = "my101dreams_last_backup_reminder";
-const BACKUP_REMINDER_INTERVAL_DAYS = 14;
-
 function createAppDataExport() {
   return {
-    version: BACKUP_FORMAT_VERSION,
+    version: BACKUP.FORMAT_VERSION,
     exportedAt: new Date().toISOString(),
     dreams: getDreams(),
     customCategories: getCustomCategories(),
@@ -23,6 +18,7 @@ function exportAppData() {
   const downloadLink = document.createElement("a");
 
   downloadLink.href = downloadUrl;
+
   downloadLink.download = `my-101-dreams-backup-${new Date()
     .toISOString()
     .slice(0, 10)}.json`;
@@ -48,7 +44,10 @@ function isValidImportedData(importedData) {
 function saveRecoveryBackup() {
   const currentData = createAppDataExport();
 
-  localStorage.setItem(RECOVERY_BACKUP_KEY, JSON.stringify(currentData));
+  localStorage.setItem(
+    STORAGE_KEYS.RECOVERY_BACKUP,
+    JSON.stringify(currentData),
+  );
 }
 
 function mergeDreams(currentDreams, importedDreams) {
@@ -74,10 +73,12 @@ function mergeDreams(currentDreams, importedDreams) {
       });
 
       updated += 1;
+
       return;
     }
 
     dreamsById.set(importedDream.id, importedDream);
+
     added += 1;
   });
 
@@ -115,6 +116,7 @@ async function importAppData(file) {
 
       if (!isValidImportedData(importedData)) {
         showToast("Soubor nemá správný formát.", "error");
+
         return;
       }
 
@@ -132,6 +134,7 @@ async function importAppData(file) {
       const currentCategories = getCustomCategories();
 
       const mergedDreams = mergeDreams(currentDreams, importedData.dreams);
+
       const mergedCategories = mergeCustomCategories(
         currentCategories,
         importedData.customCategories,
@@ -141,7 +144,7 @@ async function importAppData(file) {
       saveCustomCategories(mergedCategories.items);
 
       sessionStorage.setItem(
-        "postImportToast",
+        STORAGE_KEYS.POST_IMPORT_TOAST,
         `Import hotový: ${mergedDreams.added} nových, ${mergedDreams.updated} aktualizovaných.`,
       );
 
@@ -155,14 +158,19 @@ async function importAppData(file) {
 }
 
 function hasRecoveryBackup() {
-  return Boolean(localStorage.getItem(RECOVERY_BACKUP_KEY));
+  return Boolean(
+    localStorage.getItem(STORAGE_KEYS.RECOVERY_BACKUP),
+  );
 }
 
 async function restoreRecoveryBackup() {
-  const recoveryBackup = localStorage.getItem(RECOVERY_BACKUP_KEY);
+  const recoveryBackup = localStorage.getItem(
+    STORAGE_KEYS.RECOVERY_BACKUP,
+  );
 
   if (!recoveryBackup) {
     showToast("Žádná záchranná záloha není k dispozici.", "info");
+
     return;
   }
 
@@ -179,12 +187,17 @@ async function restoreRecoveryBackup() {
 
     if (!isValidImportedData(parsedBackup)) {
       showToast("Záchranná záloha je poškozená.", "error");
+
       return;
     }
 
-    localStorage.setItem("dreams", JSON.stringify(parsedBackup.dreams));
     localStorage.setItem(
-      "customCategories",
+      STORAGE_KEYS.DREAMS,
+      JSON.stringify(parsedBackup.dreams),
+    );
+
+    localStorage.setItem(
+      STORAGE_KEYS.CUSTOM_CATEGORIES,
       JSON.stringify(parsedBackup.customCategories),
     );
 
@@ -203,7 +216,9 @@ function shouldShowBackupReminder() {
     return false;
   }
 
-  const lastReminder = localStorage.getItem(BACKUP_REMINDER_KEY);
+  const lastReminder = localStorage.getItem(
+    STORAGE_KEYS.BACKUP_REMINDER,
+  );
 
   if (!lastReminder) {
     return true;
@@ -215,7 +230,7 @@ function shouldShowBackupReminder() {
   const differenceInDays =
     (currentDate - lastReminderDate) / (1000 * 60 * 60 * 24);
 
-  return differenceInDays >= BACKUP_REMINDER_INTERVAL_DAYS;
+  return differenceInDays >= BACKUP.REMINDER_INTERVAL_DAYS;
 }
 
 function showBackupReminder() {
@@ -226,8 +241,11 @@ function showBackupReminder() {
   setTimeout(function () {
     showToast("Doporučujeme pravidelně exportovat zálohu dat.", "info");
 
-    localStorage.setItem(BACKUP_REMINDER_KEY, new Date().toISOString());
-  }, 2000);
+    localStorage.setItem(
+      STORAGE_KEYS.BACKUP_REMINDER,
+      new Date().toISOString(),
+    );
+  }, TIMING.BACKUP_REMINDER_DELAY);
 }
 
 function setupBackupButtons() {
@@ -270,7 +288,9 @@ function setupBackupButtons() {
 }
 
 function showPostImportToast() {
-  const postImportToast = sessionStorage.getItem("postImportToast");
+  const postImportToast = sessionStorage.getItem(
+    STORAGE_KEYS.POST_IMPORT_TOAST,
+  );
 
   if (!postImportToast) {
     return;
@@ -279,9 +299,12 @@ function showPostImportToast() {
   setTimeout(function () {
     if (typeof showToast === "function") {
       showToast(postImportToast, "success");
-      sessionStorage.removeItem("postImportToast");
+
+      sessionStorage.removeItem(
+        STORAGE_KEYS.POST_IMPORT_TOAST,
+      );
     }
-  }, 300);
+  }, TIMING.POST_IMPORT_TOAST_DELAY);
 }
 
 setupBackupButtons();

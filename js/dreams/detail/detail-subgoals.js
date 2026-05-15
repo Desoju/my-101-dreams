@@ -161,7 +161,7 @@ function createSubgoalEditField(
       if (
         dreamDateInput.value &&
         subgoalDateInput.value &&
-        subgoalDateInput.value > dreamDateInput.value
+        isDateAfter(subgoalDateInput.value, dreamDateInput.value)
       ) {
         showToast(
           "Deadline kroku nemůže být později než hlavní deadline snu.",

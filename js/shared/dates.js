@@ -1,3 +1,19 @@
+function isDateOverdue(dateString) {
+  if (!dateString) {
+    return false;
+  }
+
+  return new Date(dateString) < new Date();
+}
+
+function isDateAfter(dateString, comparedDateString) {
+  if (!dateString || !comparedDateString) {
+    return false;
+  }
+
+  return new Date(dateString) > new Date(comparedDateString);
+}
+
 function formatDate(dateString) {
   if (!dateString) {
     return "Datum není nastavené";

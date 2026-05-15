@@ -7,11 +7,18 @@ function createId() {
 }
 
 function loadCustomCategories() {
-  return JSON.parse(localStorage.getItem("customCategories")) || [];
+  return (
+    JSON.parse(
+      localStorage.getItem(STORAGE_KEYS.CUSTOM_CATEGORIES),
+    ) || []
+  );
 }
 
 function getCustomCategories() {
-  const categories = JSON.parse(localStorage.getItem("customCategories")) || [];
+  const categories =
+    JSON.parse(
+      localStorage.getItem(STORAGE_KEYS.CUSTOM_CATEGORIES),
+    ) || [];
 
   let changed = false;
 
@@ -36,7 +43,10 @@ function getCustomCategories() {
 }
 
 function saveCustomCategories(categories) {
-  localStorage.setItem("customCategories", JSON.stringify(categories));
+  localStorage.setItem(
+    STORAGE_KEYS.CUSTOM_CATEGORIES,
+    JSON.stringify(categories),
+  );
 }
 
 function getAllCategories() {
@@ -93,6 +103,9 @@ function categoryExists(label, ignoredCategoryId = null) {
   const newValue = createCategoryValue(label);
 
   return getCustomCategories().some(function (category) {
-    return category.value === newValue && category.id !== ignoredCategoryId;
+    return (
+      category.value === newValue &&
+      category.id !== ignoredCategoryId
+    );
   });
 }

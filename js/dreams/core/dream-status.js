@@ -1,10 +1,13 @@
 const dreamStatusLabels = {
-  dream_active: "Aktivní",
-  dream_completed: "Splněný",
-  dream_to_be_completed: "Do budoucna",
-  dream_not_attractive_anymore: "Už mě neláká"
+  [DREAM_STATUS.ACTIVE]: "Aktivní",
+  [DREAM_STATUS.COMPLETED]: "Splněný",
+  [DREAM_STATUS.FUTURE]: "Do budoucna",
+  [DREAM_STATUS.INACTIVE]: "Už mě neláká",
 };
 
 function getDreamStatusLabel(status) {
-  return dreamStatusLabels[status] || "Aktivní";
+  return (
+    dreamStatusLabels[status] ||
+    dreamStatusLabels[DREAM_STATUS.ACTIVE]
+  );
 }
