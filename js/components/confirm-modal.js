@@ -30,6 +30,7 @@ function showConfirm(options) {
       modal = document.createElement("div");
       modal.id = "confirmModal";
       modal.className = "confirm-modal-overlay";
+
       modal.setAttribute("role", "dialog");
       modal.setAttribute("aria-modal", "true");
       modal.setAttribute("aria-labelledby", "confirmModalTitle");
@@ -71,15 +72,17 @@ function showConfirm(options) {
 
     titleElement.textContent = config.title;
     titleElement.style.display = config.title ? "block" : "none";
+
     messageElement.textContent = config.message;
 
     confirmButton.textContent = config.confirmText;
 
     if (config.cancelText) {
+      cancelButton.hidden = false;
       cancelButton.style.display = "inline-flex";
       cancelButton.textContent = config.cancelText;
     } else {
-      cancelButton.style.display = "none";
+      cancelButton.hidden = true;
     }
 
     confirmButton.className =
@@ -141,7 +144,7 @@ function showConfirm(options) {
       }
 
       const focusableElements = Array.from(
-        modal.querySelectorAll("button:not([style*='display: none'])"),
+        modal.querySelectorAll("button:not([hidden])"),
       );
 
       if (focusableElements.length === 0) {
