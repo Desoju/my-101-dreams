@@ -117,6 +117,8 @@ function setupDreamForm() {
 
     saveDreams(dreams);
 
+    clearDreamDraft();
+
     showToast("Sen byl uložen.", "success");
 
     markDreamFormClean();
