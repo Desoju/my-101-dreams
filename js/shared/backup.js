@@ -46,6 +46,61 @@ function saveRecoveryBackup() {
   localStorage.setItem(RECOVERY_BACKUP_KEY, JSON.stringify(currentData));
 }
 
+function mergeDreams(currentDreams, importedDreams) {
+  const dreamsById = new Map();
+
+  currentDreams.forEach(function (dream) {
+    dreamsById.set(dream.id, dream);
+  });
+
+  let added = 0;
+  let updated = 0;
+
+  importedDreams.forEach(function (importedDream) {
+    if (!importedDream.id) {
+      importedDream.id =
+        crypto.randomUUID?.() || `dream_${Date.now()}_${Math.random()}`;
+    }
+
+    if (dreamsById.has(importedDream.id)) {
+      dreamsById.set(importedDream.id, {
+        ...dreamsById.get(importedDream.id),
+        ...importedDream,
+      });
+
+      updated += 1;
+      return;
+    }
+
+    dreamsById.set(importedDream.id, importedDream);
+    added += 1;
+  });
+
+  return {
+    items: Array.from(dreamsById.values()),
+    added,
+    updated,
+  };
+}
+
+function mergeCustomCategories(currentCategories, importedCategories) {
+  const categorySet = new Set(currentCategories);
+
+  let added = 0;
+
+  importedCategories.forEach(function (category) {
+    if (!categorySet.has(category)) {
+      categorySet.add(category);
+      added += 1;
+    }
+  });
+
+  return {
+    items: Array.from(categorySet),
+    added,
+  };
+}
+
 async function importAppData(file) {
   const reader = new FileReader();
 
@@ -59,7 +114,7 @@ async function importAppData(file) {
       }
 
       const confirmImport = await showConfirm(
-        "Import přepíše současná data. Před importem vytvořím záchrannou zálohu. Chceš pokračovat?",
+        "Import přidá nové sny a aktualizuje existující podle ID. Současná data zůstanou zachována. Před importem vytvořím záchrannou zálohu. Chceš pokračovat?",
       );
 
       if (!confirmImport) {
@@ -68,13 +123,19 @@ async function importAppData(file) {
 
       saveRecoveryBackup();
 
-      localStorage.setItem("dreams", JSON.stringify(importedData.dreams));
-      localStorage.setItem(
-        "customCategories",
-        JSON.stringify(importedData.customCategories),
+      const currentDreams = getDreams();
+      const currentCategories = getCustomCategories();
+
+      const mergedDreams = mergeDreams(currentDreams, importedData.dreams);
+      const mergedCategories = mergeCustomCategories(
+        currentCategories,
+        importedData.customCategories,
       );
 
-      showToast("Import hotový. Záchranná záloha byla uložena.", "success");
+      saveDreams(mergedDreams.items);
+      saveCustomCategories(mergedCategories.items);
+
+      sessionStorage.setItem("postImportToast", "Import hotový.");
 
       window.location.reload();
     } catch {
@@ -193,5 +254,20 @@ function setupBackupButtons() {
   }
 }
 
+function showPostImportToast() {
+  const postImportToast = sessionStorage.getItem("postImportToast");
+
+  if (!postImportToast) {
+    return;
+  }
+
+  if (typeof showToast === "function") {
+    showToast(postImportToast, "success");
+  }
+
+  sessionStorage.removeItem("postImportToast");
+}
+
 setupBackupButtons();
+showPostImportToast();
 showBackupReminder();

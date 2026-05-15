@@ -92,3 +92,23 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.settings-action-with-helper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.settings-action-with-helper .button,
+.settings-action-with-helper button {
+  width: 100%;
+}
+
+.settings-helper-text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  text-align: center;
+  opacity: 0.8;
+}
