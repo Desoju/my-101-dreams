@@ -48,7 +48,16 @@ https://desoju.github.io/my-101-dreams/
 - Export backup as JSON
 - Import backup from JSON
 
----
+## Project structure
+
+- `js/shared/` – společné utility, constants, storage, backup
+- `js/components/` – reusable UI komponenty/helpers
+- `js/dreams/core/` – dream business logic
+- `js/dreams/home/` – home page logic
+- `js/dreams/add/` – add dream page logic
+- `js/dreams/detail/` – dream detail page logic
+- `js/shared/categories/` – category data + UI logic
+
 
 ## Tech Stack
 
