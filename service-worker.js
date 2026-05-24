@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-101-dreams-v1.2.3";
+const CACHE_NAME = "my-101-dreams-v1.2.4";
 
 const FILES_TO_CACHE = [
   "./",
@@ -21,13 +21,13 @@ const FILES_TO_CACHE = [
   "./js/shared/form-validation.js",
   "./js/shared/constants.js",
 
-  "/js/shared/backup/backup-data.js",
-  "/js/shared/backup/backup-export.js",
-  "/js/shared/backup/backup-import.js",
-  "/js/shared/backup/backup-recovery.js",
-  "/js/shared/backup/backup-reminder.js",
-  "/js/shared/backup/backup-ui.js",
-  "/js/shared/backup/backup.js",
+  "./js/shared/backup/backup-data.js",
+  "./js/shared/backup/backup-export.js",
+  "./js/shared/backup/backup-import.js",
+  "./js/shared/backup/backup-recovery.js",
+  "./js/shared/backup/backup-reminder.js",
+  "./js/shared/backup/backup-ui.js",
+  "./js/shared/backup/backup.js",
 
   "./js/pwa/pwa-install.js",
   "./js/pwa/pwa-update.js",
