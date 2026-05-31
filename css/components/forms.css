@@ -135,6 +135,18 @@ input[type="checkbox"] {
   grid-template-columns: 1fr;
 }
 
+.date-time-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.form-field {
+  min-width: 0;
+  max-width: 100%;
+}
+
 @media (min-width: 700px) {
   .form-row-three {
     grid-template-columns: repeat(3, 1fr);
