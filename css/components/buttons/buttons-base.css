@@ -99,3 +99,11 @@ button,
 .button-soft {
   min-height: 44px;
 }
+
+.button-secondary,
+.button-soft {
+  border: var(--border-primary-light);
+
+  background: var(--primary-soft);
+  color: var(--button-secondary-text);
+}

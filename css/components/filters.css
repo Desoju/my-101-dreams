@@ -135,10 +135,8 @@
 
 .filters-bottom-row #clearFiltersButton {
   border: var(--border-primary-light);
-
   background: var(--primary-soft);
-  color: var(--primary);
-
+  color: var(--button-secondary-text);
   box-shadow: none;
 }
 

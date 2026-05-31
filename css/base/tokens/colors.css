@@ -5,6 +5,8 @@
   --primary-light: #cffafe;
   --primary-soft: #ecfeff;
 
+  --button-secondary-text: var(--primary-dark);
+
   --success: #10b981;
   --success-light: #34d399;
 
@@ -78,7 +80,7 @@
   --indigo-text: #4338ca;
 
   --cyan-bg: #cffafe;
-  --cyan-text: #0e7490;
+  --cyan-text: #cffafe;
 
   --lime-bg: #ecfccb;
   --lime-text: #4d7c0f;
@@ -97,6 +99,8 @@
 
     --primary-light: #164e63;
     --primary-soft: #102b33;
+
+    --button-secondary-text: var(--cyan-text);
 
     /* Badge colors */
     --blue-bg: #1e3a5f;

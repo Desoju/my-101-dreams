@@ -27,9 +27,8 @@
 .button-secondary,
 .button-soft {
   border: var(--border-primary-light);
-
   background: var(--primary-soft);
-  color: #004a55;
+  color: var(--button-secondary-text);
 }
 
 .button-secondary {
