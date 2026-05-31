@@ -9,7 +9,7 @@ function checkIfDreamFormIsDirty() {
   const hasPinterestBoard =
     document.getElementById("dreamPinterestBoard").value.trim() !== "";
 
-  const hasDate = document.getElementById("dreamDate").value !== "";
+  const hasDate = document.getElementById("dreamDate")?.value !== "";
 
   const hasSubgoal = Array.from(
     document.querySelectorAll(".subgoal-name"),

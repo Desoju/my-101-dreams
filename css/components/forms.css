@@ -51,24 +51,13 @@ select {
 
 .date-time-input,
 input[type="date"],
-input[type="datetime-local"] {
+input[type="time"] {
   display: block;
   width: 100%;
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
-
-  appearance: none;
-  -webkit-appearance: none;
 }
-
-.date-time-input::-webkit-date-and-time-value,
-input[type="date"]::-webkit-date-and-time-value,
-input[type="datetime-local"]::-webkit-date-and-time-value {
-  text-align: left;
-  min-width: 0;
-}
-
 select {
   appearance: none;
 
@@ -160,7 +149,7 @@ input[type="checkbox"] {
 @media (max-width: 768px) {
   .date-time-input,
   input[type="date"],
-  input[type="datetime-local"] {
+  input[type="time"] {
     font-size: 16px;
     padding-inline: var(--space-3);
   }
@@ -169,5 +158,29 @@ input[type="checkbox"] {
 @media (min-width: 700px) {
   .form-row-three {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.date-time-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-3);
+  width: 100%;
+  min-width: 0;
+}
+
+.date-time-field {
+  display: grid;
+  min-width: 0;
+}
+
+.date-time-field input {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 420px) {
+  .date-time-row {
+    grid-template-columns: 1fr;
   }
 }

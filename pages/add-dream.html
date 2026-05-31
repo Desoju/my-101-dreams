@@ -81,14 +81,19 @@
         </div>
 
         <div class="form-field">
-          <label for="dreamDate">Datum splnění</label>
+          <span class="field-label">Datum splnění</span>
 
-          <input
-            type="datetime-local"
-            id="dreamDate"
-            name="dream_completion_date"
-            class="date-time-input"
-          />
+          <div class="date-time-row">
+            <div class="date-time-field">
+              <label for="dreamDate">Datum</label>
+              <input type="date" id="dreamDate" name="dream_completion_date" />
+            </div>
+
+            <div class="date-time-field">
+              <label for="dreamTime">Čas</label>
+              <input type="time" id="dreamTime" name="dream_completion_time" />
+            </div>
+          </div>
         </div>
 
         <h2>Kroky ke splnění</h2>
@@ -108,14 +113,26 @@
             </div>
 
             <div class="form-field">
-              <label for="subgoalDate0">Do kdy to chci zvládnout</label>
+              <label class="sr-only" for="subgoalDate0">
+                Datum splnění kroku
+              </label>
 
               <input
-                type="datetime-local"
+                type="date"
                 id="subgoalDate0"
-                name="subgoal_date"
-                class="date-time-input"
                 class="subgoal-date"
+                name="subgoal_date[]"
+              />
+
+              <label class="sr-only" for="subgoalTime0">
+                Čas splnění kroku
+              </label>
+
+              <input
+                type="time"
+                id="subgoalTime0"
+                class="subgoal-time"
+                name="subgoal_time[]"
               />
             </div>
           </div>

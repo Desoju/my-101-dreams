@@ -1,3 +1,14 @@
+function getDateTimeValue(dateInputId, timeInputId) {
+  const date = document.getElementById(dateInputId)?.value;
+  const time = document.getElementById(timeInputId)?.value;
+
+  if (!date) {
+    return "";
+  }
+
+  return `${date}T${time || "00:00"}`;
+}
+
 function setupDreamForm() {
   const dreamForm = document.getElementById("dreamForm");
 
@@ -71,7 +82,7 @@ function setupDreamForm() {
       return;
     }
 
-    const dreamDate = document.getElementById("dreamDate").value;
+    const dreamDate = getDateTimeValue("dreamDate", "dreamTime");
     const subgoals = collectSubgoals();
 
     if (dreamDate) {

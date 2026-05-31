@@ -32,8 +32,6 @@
           </div>
           <p id="dreamDescriptionText"></p>
 
-          <p id="dreamDescriptionText"></p>
-
           <a
             id="dreamPinterestBoardLink"
             class="pinterest-preview"
@@ -167,7 +165,11 @@
 
         <div class="form-field">
           <label for="dreamCompletionDateInput">Datum splnění</label>
-          <input type="datetime-local" id="dreamCompletionDateInput" />
+          <div class="date-time-row">
+            <input type="date" id="dreamCompletionDateInput" />
+
+            <input type="time" id="dreamCompletionTimeInput" />
+          </div>
         </div>
 
         <section class="edit-subgoals-section">

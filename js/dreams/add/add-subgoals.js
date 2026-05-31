@@ -1,9 +1,9 @@
 function updateSubgoalDateLimits() {
-  const dreamDate = document.getElementById("dreamDate").value;
+  const dreamDate = document.getElementById("dreamDate")?.value || "";
   const subgoalDateInputs = document.querySelectorAll(".subgoal-date");
 
   subgoalDateInputs.forEach(function (input) {
-    input.max = dreamDate || "";
+    input.max = dreamDate;
 
     if (dreamDate && input.value && input.value > dreamDate) {
       input.value = "";
@@ -30,10 +30,17 @@ function createSubgoalForm() {
     <div class="form-field">
       <label>Do kdy to chci zvládnout</label>
 
-      <input
-        type="datetime-local"
-        class="subgoal-date"
-      >
+      <div class="date-time-row">
+        <input
+          type="date"
+          class="subgoal-date"
+        >
+
+        <input
+          type="time"
+          class="subgoal-time"
+        >
+      </div>
     </div>
 
     <button type="button" class="remove-subgoal-button button-danger">
@@ -75,9 +82,12 @@ function setupAddSubgoalButton() {
 function collectSubgoals() {
   return Array.from(document.querySelectorAll(".subgoal-form")).map(
     function (subgoalForm) {
+      const date = subgoalForm.querySelector(".subgoal-date").value;
+      const time = subgoalForm.querySelector(".subgoal-time").value;
+
       return {
         name: subgoalForm.querySelector(".subgoal-name").value,
-        date: subgoalForm.querySelector(".subgoal-date").value,
+        date: date ? `${date}T${time || "00:00"}` : "",
         completed: false,
       };
     },

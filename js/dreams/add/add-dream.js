@@ -5,3 +5,4 @@ setupDatePickerOpenOnClick();
 setupAddDreamNavigationProtection();
 setupDreamDraftRestore();
 setupDreamDraftAutosave();
+setupDateTimePickerOpenOnClick();

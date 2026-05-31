@@ -13,3 +13,20 @@ function setupDatePickerOpenOnClick() {
     }
   });
 }
+
+function setupDateTimePickerOpenOnClick() {
+  document.addEventListener("click", function (event) {
+    const input = event.target;
+
+    if (
+      input.tagName !== "INPUT" ||
+      (input.type !== "date" && input.type !== "time")
+    ) {
+      return;
+    }
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+    }
+  });
+}
