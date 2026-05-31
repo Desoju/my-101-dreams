@@ -57,6 +57,16 @@ input[type="datetime-local"] {
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.date-time-input::-webkit-date-and-time-value,
+input[type="date"]::-webkit-date-and-time-value,
+input[type="datetime-local"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-width: 0;
 }
 
 select {
@@ -151,7 +161,8 @@ input[type="checkbox"] {
   .date-time-input,
   input[type="date"],
   input[type="datetime-local"] {
-    font-size: var(--font-size-sm);
+    font-size: 16px;
+    padding-inline: var(--space-3);
   }
 }
 
