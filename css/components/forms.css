@@ -2,13 +2,17 @@ form,
 #editMode {
   display: grid;
   gap: var(--space-form-group);
+  width: 100%;
   min-width: 0;
+  max-width: 100%;
 }
 
 .form-field {
   display: grid;
   gap: var(--space-2);
+  width: 100%;
   min-width: 0;
+  max-width: 100%;
 }
 
 label {
@@ -28,6 +32,7 @@ select {
   width: 100%;
   max-width: 100%;
   min-width: 0;
+  box-sizing: border-box;
 
   padding: var(--form-control-padding);
 
@@ -44,17 +49,14 @@ select {
   transition: var(--transition-form-control);
 }
 
-.form-row,
-.subgoal-form,
-.subgoal-edit-form {
-  min-width: 0;
-  max-width: 100%;
-}
-
+.date-time-input,
 input[type="date"],
 input[type="datetime-local"] {
+  display: block;
+  width: 100%;
   max-width: 100%;
   min-width: 0;
+  box-sizing: border-box;
 }
 
 select {
@@ -109,6 +111,25 @@ input[type="checkbox"] {
   margin: 0;
 }
 
+.form-row {
+  display: grid;
+  gap: var(--space-3);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.form-row-three {
+  grid-template-columns: 1fr;
+}
+
+.subgoal-form,
+.subgoal-edit-form {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
 .subgoal-form {
   padding: var(--space-4);
 
@@ -126,29 +147,16 @@ input[type="checkbox"] {
   margin: var(--space-3) auto 0;
 }
 
-.form-row {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.form-row-three {
-  grid-template-columns: 1fr;
-}
-
-.date-time-input {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.form-field {
-  min-width: 0;
-  max-width: 100%;
+@media (max-width: 768px) {
+  .date-time-input,
+  input[type="date"],
+  input[type="datetime-local"] {
+    font-size: var(--font-size-sm);
+  }
 }
 
 @media (min-width: 700px) {
   .form-row-three {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
