@@ -179,8 +179,19 @@ input[type="checkbox"] {
   min-width: 0;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 768px) {
   .date-time-row {
     grid-template-columns: 1fr;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  input[type="date"],
+  input[type="time"] {
+    max-width: 100%;
+    min-width: 0;
+    inline-size: 100%;
+    appearance: textfield;
+    -webkit-appearance: textfield;
   }
 }
